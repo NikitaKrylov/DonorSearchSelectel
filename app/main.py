@@ -4,6 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 import asyncio
 from src.users.routes import router as user_router
 from src.database import Base, init_models
+from src.config import config
 
 
 app: FastAPI = FastAPI()
@@ -28,8 +29,9 @@ app.include_router(user_router)
 
 @app.on_event('startup')
 async def startup():
-    pass
-    # await init_models()
+    if config.reset_db:
+        await init_models()
+        print('database reseted')
 
 
 if __name__ == '__main__':

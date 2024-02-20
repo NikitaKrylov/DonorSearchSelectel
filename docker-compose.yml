@@ -44,7 +44,7 @@ services:
   db:
     container_name: db
     image: postgres:latest
-    env_file: .env
+    env_file: db.env
     healthcheck:
       test: [ "CMD-SHELL", "sh -c 'pg_isready -U ${DBUSER} -d ${DBNAME}'" ]
       interval: 10s
