@@ -8,6 +8,10 @@ class Config(BaseSettings):
     dbname: str
     dbport: int
     reset_db: bool
+    logging_level: str
+    postgres_initdb_args: str
+    service_name: str
+
 
     @property
     def db_url(self) -> str:
