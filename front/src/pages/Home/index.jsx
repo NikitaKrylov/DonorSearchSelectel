@@ -1,5 +1,6 @@
-import Header from '../../components/Header/index.jsx';
 import './Home.scss';
+import Header from '../../components/Header/index.jsx';
+
 
 const Home = () => {
     return (
