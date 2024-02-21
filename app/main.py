@@ -1,11 +1,9 @@
 import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-import asyncio
-from src.users.routes import router as user_router
-from src.database import Base, init_models
-from src.config import config
-
+from src.routes.users import router as user_router
+from src.configs.base import config
+from src.database.db import init_models
 
 app: FastAPI = FastAPI()
 

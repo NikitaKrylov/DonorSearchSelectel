@@ -1,18 +1,18 @@
 version: '3.9'
 
 services:
-  app:
-    container_name: app
-    restart: always
-    command: python3 main.py
-    env_file: .env
-    build:
-      context: ./app
-      dockerfile: app.dockerfile
-    depends_on:
-      - db
-    ports:
-      - 8000:8000
+#  app:
+#    container_name: app
+#    restart: always
+#    command: python3 main.py
+#    env_file: .env
+#    build:
+#      context: ./app
+#      dockerfile: app.dockerfile
+#    depends_on:
+#      - db
+#    ports:
+#      - 8000:8000
 
 #  frontend:
 #    container_name: frontend
@@ -42,7 +42,7 @@ services:
 #      - 443:443
 
   db:
-    container_name: db
+    container_name: database
     image: postgres:latest
     env_file: db.env
     healthcheck:
