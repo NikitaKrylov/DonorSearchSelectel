@@ -1,4 +1,6 @@
 .header {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-style: normal;
     display: flex;
     flex-direction: column;
     height: 53px;
@@ -22,69 +24,89 @@
         align-items: center;
     }
     &__login {
-        background-color: #46a358;
+        background-color: #ffffff;
         cursor: pointer;
         border: none;
-        width: 100px;
-        height: 35px;
-        border-radius: 6px;
+        width: 165px;
+        height: 54px;
+        border-radius: 106px;
+        border:2px solid #FF2A23;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: 'PT Sans', sans-serif;
-        color: #fff;
-        font-size: 16px;
-        font-weight: 400;
+        color: #FF2A23;
+        font-size: 24px;
+        font-weight: 600;
         line-height: 20px;
         letter-spacing: 0em;
         text-align: left;
+        transition: 0.3s;
         &:hover {
-            background-color: #349445;
+            background-color: #FF2A23;
+            color:#ffffff
         }
 
-        &:active {
-            background-color: #1e7f2f;
-            transform: scale(0.95);
-            box-shadow: 0 0 5px #46a358;
-        }
 
         &:hover::before {
             transform: translateX(-4px);
+            transition: transform 500ms ease-in-out;
         }
     }
     &__navigation {
         display: flex;
-        gap: 30px;
+        gap: 60px;
+        
     }
     &__link {
         text-decoration: none;
-        font-family: 'PT Sans', sans-serif;
-        font-size: 16px;
-        font-weight: 400;
+        font-size: 22px;
+        font-weight: 600;
         line-height: 20px;
         letter-spacing: 0em;
         text-align: left;
-        color: #3d3d3d;
+        color: #252525;
+        &:after {
+            display: block;
+            content: '';
+            border-bottom: solid 5px #FF2A23;
+            border-radius: 100px;
+            transform: scaleX(0);
+            transition: transform 250ms ease-in-out;
+          }
+      
+          &:before {
+            position: absolute;
+            bottom: 1.2em;
+            left: 0;
+            width: 100%;
+          }
+      
+          &:hover {
+            &:after,
+            &:before {
+              transform: scaleX(1);
+            }
+          }
     }
 }
 
 .modal {
-	&__wrap {
-		width: 528px;
-		padding: 24px 80px;
-	}
+  &__wrap {
+    width: 528px;
+    padding: 24px 80px;
+  }
 
-	&__title {
-		margin-bottom: 10px;
-		font-size: 24px;
-	}
+  &__title {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
 
-	&__inputs {
-		display: flex;
-		flex-direction: column;
-		gap: 30px;
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
         margin-bottom: 30px;
-	}
+  }
 
     &__descr{
         max-width: 530px;
@@ -92,34 +114,34 @@
         line-height: 20px;
     }
 
-	& &__button {
-		width: 100%;
-		height: 40px;
-		border-radius: 20px;
+  & &__button {
+    width: 165px;
+    height: 54px;
+    border-radius: 106px;
+        background-color: orangered;
 
-		&_disabled {
-			opacity: 0.6;
-			background-color: orangered;
-			margin-top: 24px;
-			width: 100%;
-			height: 40px;
-			border-radius: 20px;
-		}
-	}
+    &_disabled {
+      opacity: 0.6;
+      background-color: orangered;
+      margin-top: 24px;
+      width: 100%;
+      height: 40px;
+      border-radius: 20px;
+    }
+  }
 
-	&__link {
-		color: #0000ff;
-		cursor: pointer;
+  &__link {
+    color: #0000ff;
+    cursor: pointer;
 
-		&-recovery {
-			margin-bottom: 20px;
+    &-recovery {
+      margin-bottom: 20px;
             font-size: 15px;
-		}
+    }
 
         &-wrap{
             margin-bottom: 30px;
             font-size: 15px;
         }
-	}
+  }
 }
-

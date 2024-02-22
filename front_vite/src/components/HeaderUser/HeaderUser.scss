@@ -1,0 +1,13 @@
+.user-header{
+    display: flex;
+    gap: 5px;
+    &__content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    &__photo{
+        width: 54px;
+        height: 54px;
+    }
+}

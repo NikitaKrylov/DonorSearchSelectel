@@ -2,6 +2,7 @@ import React from 'react';
 import { TextField, Button } from '@mui/material';
 
 const Register = ({ changeMode }) => {
+
     return (
         <div className="modal">
             <div className="modal__wrap">
@@ -17,7 +18,7 @@ const Register = ({ changeMode }) => {
                     </span>
                 </div>
 
-                <Button className="modal__button" variant="contained" fullWidth>
+                <Button className="modal__button" onClick={handleRegistration} variant="contained" fullWidth>
                     Continue
                 </Button>
             </div>
