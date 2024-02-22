@@ -2,7 +2,7 @@ import Dialog from '@mui/material/Dialog';
 import { useState } from 'react';
 import './Header.scss';
 import Register from './Register';
-import Auth from './Auth';
+import Auth from './Auth.js';
 import logo from '../../components/Header/logo.svg';
 
 const Header = () => {
@@ -27,16 +27,16 @@ const Header = () => {
                 <img src={logo} className="header__logo" alt="logo"/>
                 <div className="header__navigation">
                     <a className="header__link" href="">
-                        Главная
+                        главная
                     </a>
                     <a className="header__link" href="">
-                        Найти донора
+                        найти донора
                     </a>
                     <a className="header__link" href="">
-                        Стать донором
+                        стать донором
                     </a>
                     <a className="header__link" href="">
-                        О нас
+                        еще
                     </a>
                 </div>
                 <div className="header__left">
