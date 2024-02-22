@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './Header.scss';
 import Register from './Register';
 import Auth from './Auth';
+import logo from '../../components/Header/logo.svg';
 
 const Header = () => {
     const [open, setOpen] = useState(false);
@@ -23,7 +24,7 @@ const Header = () => {
     return (
         <header className="header">
             <div className="header__content">
-                <img src={require('./logo.svg')} className="header__logo"></img>
+                <img src={logo} className="header__logo" alt="logo"/>
                 <div className="header__navigation">
                     <a className="header__link" href="">
                         Главная
@@ -50,5 +51,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
