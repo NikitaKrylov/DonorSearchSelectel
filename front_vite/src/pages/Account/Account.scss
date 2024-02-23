@@ -1,0 +1,12 @@
+.account { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    &__profile{ 
+        display: flex; 
+        justify-content: space-between; 
+        padding-top: 75px; 
+        width: 1200px; 
+    } 
+}
