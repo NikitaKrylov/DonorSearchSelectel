@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.schemas.pets import PetType, TransactionType, DonationTransactionStatus
@@ -12,6 +14,7 @@ class Pet(Base):
     owner: Mapped['User'] = relationship(back_populates='pets', uselist=False)
 
     name: Mapped[str]
+    photo: Mapped[str]
     age: Mapped[int]
     pet_type: Mapped[PetType]
     blood_type: Mapped[str]
@@ -30,4 +33,5 @@ class BloodDonationTransaction(Base):
     volume: Mapped[float]
     type: Mapped[TransactionType]
     status: Mapped[DonationTransactionStatus]
+    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
 

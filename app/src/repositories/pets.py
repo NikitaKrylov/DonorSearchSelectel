@@ -1,3 +1,5 @@
+import aiofiles
+from fastapi import UploadFile
 from sqlalchemy import and_, select
 from sqlalchemy.orm import joinedload
 
@@ -30,13 +32,20 @@ class PetsRepository(BaseRepository, SQLAlchemyRepository):
                 filter_data=filter_data
             )
 
-    async def create(self, owner_id: int, data: CreatePetDTO):
+    async def create(self, owner_id: int, data: CreatePetDTO, image_file: UploadFile):
+        file_path = f'media/{image_file.filename}'
+
+        async with aiofiles.open(file_path, 'wb') as out_file:
+            content = await image_file.read()
+            await out_file.write(content)
+
         async with async_session() as session:
             return await self.create_object(
                 session,
                 data,
                 GetPetDTO,
-                owner_id=owner_id
+                owner_id=owner_id,
+                photo=file_path
             )
 
     async def update(self, pet_id: int, data: UpdatePetDTO):

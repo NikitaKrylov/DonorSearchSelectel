@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, UploadFile, File
 from src.dependencies.users import get_current_user
 from src.schemas.pets import GetPetDTO, UpdatePetDTO, CreatePetDTO, PetFilterData
 from src.repositories.pets import PetsRepository
@@ -22,8 +22,8 @@ async def get_pet(pet_id: int):
 
 
 @router.post('')
-async def create_pet(data: CreatePetDTO, current_user=Depends(get_current_user)):
-    return await repository.create(current_user.id, data)
+async def create_pet(data: CreatePetDTO = Depends(), file_image: UploadFile = File(), current_user=Depends(get_current_user)):
+    return await repository.create(current_user.id, data, file_image)
 
 
 @router.delete('/{pet_id}')
