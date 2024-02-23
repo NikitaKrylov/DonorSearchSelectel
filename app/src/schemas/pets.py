@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import UploadFile
 from fastapi.params import Form, File
 from pydantic import BaseModel
@@ -39,6 +41,7 @@ class CreatePetDTO(BaseModel):
 
 class GetPetDTO(CreatePetDTO):
     id: int
+    photo: str
 
 
 class GetPetWithOwnerDTO(GetPetDTO):
@@ -64,6 +67,7 @@ class GetDonationTransactionDTO(BaseModel):
     type: TransactionType
     status: DonationTransactionStatus
     reason: str
+    created_at: datetime
 
 
 class CreateDonationTransactionDTO(BaseModel):
@@ -78,7 +82,6 @@ class UpdateDonationTransactionDTO(BaseModel):
     type: TransactionType
     status: DonationTransactionStatus
     reason: str
-
 
 
 class TransactionFilterData(BaseFilterData):

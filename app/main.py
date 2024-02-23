@@ -1,6 +1,8 @@
 import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
+from starlette.staticfiles import StaticFiles
+
 from src.routes.users import router as user_router
 from src.routes.donations import router as donation_router
 from src.routes.pets import router as pets_router
@@ -8,6 +10,8 @@ from src.configs.base import config
 from src.database.db import init_models
 
 app: FastAPI = FastAPI()
+
+app.mount("/media", StaticFiles(directory="media"), name="media")
 
 origins = [
     'http://localhost',
