@@ -12,6 +12,7 @@ const Register = ({ changeMode }) => {
     const [authError, setAuthError] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
     const handleLoginClick = useCallback(() => {
         if (email === '' || password === '') {
             console.log(email, password);
@@ -31,6 +32,7 @@ const Register = ({ changeMode }) => {
             }
         ).then((response) => {
             setData(response.data?.email);
+            navigate("/account");
         }).catch(() => {
             setAuthError(true)
             console.log('authError')
