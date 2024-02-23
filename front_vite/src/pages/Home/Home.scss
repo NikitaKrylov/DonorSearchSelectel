@@ -80,11 +80,6 @@
         margin-bottom: 50px;
     }
     &__blockinfo {
-        position: relative;
-        background-image: url(./blockinfo.png);
-        width: 1274.118px;
-        height: 815.71px;
-        margin-bottom: 50px;
-        z-index: 10;
+        display: block;
     }
 }
