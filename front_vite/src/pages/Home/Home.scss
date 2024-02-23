@@ -80,6 +80,55 @@
         margin-bottom: 50px;
     }
     &__blockinfo {
-        display: block;
+        display: flex;
+        background-image: url('./blockinfo.png');
+        background-size: cover;
+        width: 1234px;
+        height: 704px;
+        border-radius: 45px;
+    }
+    &__blockinfo-wrap{
+        width: 1274.118px;
+        height: 815.71px;
+    }
+    &__articles{
+        display: flex;
+        gap: 40px;
+    }
+    &__more-articles{
+        display: inline-flex;
+        padding: 19.077px;
+        justify-content: center;
+        align-items: center;
+        gap: 9.538px;
+        border-radius: 28.615px;
+        background: #FF6565;
+        color: #FFF;
+        font-family: "Montserrat Alternates";
+        font-size: 19.077px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin-bottom: 50px;
+    }
+    &__faq{
+        width: 1248px;
+        height: 891px;
+        display: flex;
+        padding: 40px 40px 24px 40px;
+        align-items: flex-start;
+        flex-shrink: 0;
+        border-radius: 45px;
+        background: #FFF;
+        box-shadow: 0px 35px 78px 0px rgba(112, 102, 102, 0.10), 0px 141px 141px 0px rgba(112, 102, 102, 0.09), 0px 317px 190px 0px rgba(112, 102, 102, 0.05), 0px 564px 226px 0px rgba(112, 102, 102, 0.01), 0px 882px 247px 0px rgba(112, 102, 102, 0.00);
+        margin-bottom: 150px;
+    }
+    &__questions{
+        width: 572px;
+        display: flex;
+        padding: 0px 8px 344px 0px;
+        flex-direction: column;
+        align-items: flex-start;
+
     }
 }

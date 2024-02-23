@@ -7,12 +7,23 @@ import { Instruction } from '../../components/Block/utils.js';
 import Block from '../../components/Block/Block.jsx';
 import FastCard from '../../components/FastCard/FastCard.jsx';
 import { FastPets } from '../../components/FastCard/utils.js';
-
+import Article from '../../components/Article/Article.jsx';
+import Question from '../../components/Question/Question.jsx';
+import { Questions } from '../../components/Question/utils.js';
+import Answer from '../../components/Question/Answer.jsx';
+import react, {useState} from 'react';
+import Footer from '../../components/Footer/Footer.jsx';
 
 const Home = () => {
+    const [selectedQuestion, setSelectedQuestion] = useState(null);
+
+    const handleSelect = (question) => {
+        setSelectedQuestion(question);
+    };
     return (
         <div className='home'>
             <Header />
+            <div className='main'>
             <Banner />
             <h2 className='home__title'>Им подарили новую жизнь</h2>
             <div className='home__cards'>
@@ -51,9 +62,40 @@ const Home = () => {
                 }
             </div>
             <div className='home__blockinfo-wrap'>
-                <div className='home__blockinfo'></div>
+                    <div className='home__blockinfo'></div>
             </div>
             <h2 className='home__title'>Рекомендуем к прочтению</h2>
+            <div className='home__articles'>
+                <Article />
+                <Article />
+                <Article />
+            </div>
+            <button className='home__more-articles'>Все статьи</button>
+            {/* <div className="home__faq">
+                <div className='home__questions'>
+                    {
+                        Questions.map((data, index) => {
+                        return (
+                            <Question key={index} data={data} />
+                        )
+                    })
+                    }
+                </div>
+                <div className='home__answer'></div>
+                
+            </div> */}
+            <div className="home__faq">
+            <div className='home__questions'>
+                {Questions.map((data, index) => (
+                <Question key={index} data={data} handleSelect={handleSelect} isSelected={selectedQuestion === data} />
+                ))}
+            </div>
+            <div className='home__answer'>
+                {selectedQuestion && <Answer answer={selectedQuestion.answer} />}
+            </div>
+            </div>
+            </div>
+        <Footer />
         </div>
         
     )
