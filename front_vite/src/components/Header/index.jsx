@@ -11,20 +11,20 @@ const Header = () => {
 
     const onOpen = () => {
         setOpen(true);
-    }
+    };
 
     const onClose = () => {
         setOpen(false);
-    }
+    };
 
     const changeMode = () => {
         setIsReg(!isReg);
-    }
+    };
 
     return (
         <header className="header">
             <div className="header__content">
-                <img src={logo} className="header__logo" alt="logo"/>
+                <img src={logo} className="header__logo" alt="logo" />
                 <div className="header__navigation">
                     <a className="header__link" href="">
                         главная
@@ -40,7 +40,9 @@ const Header = () => {
                     </a>
                 </div>
                 <div className="header__left">
-                    <button className='header__login' onClick={onOpen}>Войти</button>
+                    <button className="header__login" onClick={onOpen}>
+                        Войти
+                    </button>
                     <Dialog className="modal" open={open} onClose={onClose}>
                         {isReg ? <Auth changeMode={changeMode} /> : <Register changeMode={changeMode} />}
                     </Dialog>
