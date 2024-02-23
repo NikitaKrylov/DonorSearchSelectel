@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 
 from src.services import users as service
 from src.repositories.users import UserRepository
-from src.schemas.users import GetUserDTO, CreateUserDTO, UpdateUserDTO, Token
+from src.schemas.users import GetUserDTO, CreateUserDTO, UpdateUserDTO, Token, UserFilterData
 from src.dependencies.users import get_current_user
 
 router = APIRouter(
@@ -15,8 +15,8 @@ repository = UserRepository()
 
 
 @router.get('', response_model=list[GetUserDTO])
-async def get_users(limit: int = 100, offset: int = 0):
-    return await repository.get_all(limit, offset)
+async def get_users(limit: int = 100, offset: int = 0, filter_data: UserFilterData = Depends(UserFilterData)):
+    return await repository.get_all(limit, offset, filter_data=filter_data)
 
 
 @router.get('/me')

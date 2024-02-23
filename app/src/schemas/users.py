@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from .base import BaseFilterData
 
 
 class GetUserDTO(BaseModel):
@@ -25,4 +26,9 @@ class TokenData(BaseModel):
 class Token(BaseModel):
     access_token: str
     token_type: str
+
+
+class UserFilterData(BaseFilterData):
+    email: str | None = None
+
 

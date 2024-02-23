@@ -1,21 +1,27 @@
 from abc import ABC, abstractmethod
-from typing import Type
+from typing import Type, Any
 
 from fastapi import HTTPException
 from pydantic import BaseModel
 from sqlalchemy import ColumnElement, select, update, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.sql._typing import _HasClauseElement
+from sqlalchemy.sql.base import ExecutableOption
 from sqlalchemy.sql.elements import SQLCoreOperations
 from starlette import status
 
 from src.database.db import Base
+from src.schemas.base import BaseFilterData
 
 
 class BaseRepository(ABC):
     
     @abstractmethod
     async def get(self, *args, **kwargs):
+        pass
+
+    @abstractmethod
+    async def get_all(self, *args, **kwargs):
         pass
 
     @abstractmethod
@@ -38,9 +44,10 @@ class SQLAlchemyRepository:
             self,
             session: AsyncSession,
             data: BaseModel,
-            model_schema: Type[BaseModel]
+            model_schema: Type[BaseModel],
+            **additional_fields
     ):
-        new_obj = self.model(**data.model_dump())
+        new_obj = self.model(**data.model_dump(), **additional_fields)
         session.add(new_obj)
         await session.commit()
         await session.refresh(new_obj)
@@ -50,9 +57,14 @@ class SQLAlchemyRepository:
             self,
             session: AsyncSession,
             expression: ColumnElement[bool] | _HasClauseElement[bool] | SQLCoreOperations[bool],
-            model_schema: Type[BaseModel]
+            model_schema: Type[BaseModel],
+            options: ExecutableOption = None
     ):
         query = select(self.model).where(expression)
+
+        if options:
+            query = query.options(options)
+
         result = await session.execute(query)
         _obj = result.scalar_one_or_none()
 
@@ -66,9 +78,21 @@ class SQLAlchemyRepository:
             session: AsyncSession,
             model_schema: Type[BaseModel],
             limit: int = 1000,
-            offset: int = 0
+            offset: int = 0,
+            options:  ExecutableOption = None,
+            expression: ColumnElement[bool] | _HasClauseElement[bool] | SQLCoreOperations[bool] = None,
+            filter_data: BaseFilterData | None = None
     ):
         query = select(self.model).offset(offset).limit(limit)
+        if expression:
+            query = query.where(expression)
+
+        if filter_data:
+            query = query.filter_by(**filter_data.get_filters())
+
+        if options:
+            query = query.options(options)
+
         result = await session.execute(query)
         return [model_schema.model_validate(obj, from_attributes=True) for obj in result.scalars().all()]
 

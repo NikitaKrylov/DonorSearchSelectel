@@ -1,7 +1,7 @@
 from src.database.db import async_session
 from src.database.models.users import User
 from src.repositories.base import SQLAlchemyRepository, BaseRepository
-from src.schemas.users import GetUserDTO, CreateUserDTO, UpdateUserDTO
+from src.schemas.users import GetUserDTO, CreateUserDTO, UpdateUserDTO, UserFilterData
 
 
 class UserRepository(BaseRepository, SQLAlchemyRepository):
@@ -38,13 +38,14 @@ class UserRepository(BaseRepository, SQLAlchemyRepository):
                 self.model.id == user_id
             )
 
-    async def get_all(self, limit: int = 1000, offset: int = 0):
+    async def get_all(self, limit: int = 1000, offset: int = 0, filter_data: UserFilterData | None = None):
         async with async_session() as session:
             return await self.get_objects(
                 session,
                 GetUserDTO,
                 limit,
-                offset
+                offset,
+                filter_data=filter_data
             )
 
     async def get_one_by(self, expression, allow_none: bool = True) -> GetUserDTO:

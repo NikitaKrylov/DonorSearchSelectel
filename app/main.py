@@ -2,6 +2,8 @@ import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from src.routes.users import router as user_router
+from src.routes.donations import router as donation_router
+from src.routes.pets import router as pets_router
 from src.configs.base import config
 from src.database.db import init_models
 
@@ -23,6 +25,8 @@ app.add_middleware(
 )
 
 app.include_router(user_router)
+app.include_router(pets_router)
+app.include_router(donation_router)
 
 
 @app.on_event('startup')
