@@ -10,6 +10,7 @@ from src.database.db import async_session
 from src.schemas.base import BaseFilterData
 from src.schemas.pets import GetPetDTO, CreatePetDTO, UpdatePetDTO, TransactionType, CreateDonationTransactionDTO, \
     GetDonationTransactionDTO, UpdateDonationTransactionDTO, PetFilterData, TransactionFilterData, GetDonationTransactionWithRelatedDTO
+from src.services.files import download_image
 
 
 class PetsRepository(BaseRepository, SQLAlchemyRepository):
@@ -34,11 +35,7 @@ class PetsRepository(BaseRepository, SQLAlchemyRepository):
             )
 
     async def create(self, owner_id: int, data: CreatePetDTO, image_file: UploadFile):
-        file_path = f'media/{image_file.filename}'
-
-        async with aiofiles.open(file_path, 'wb') as out_file:
-            content = await image_file.read()
-            await out_file.write(content)
+        file_path = await download_image(image_file)
 
         async with async_session() as session:
             return await self.create_object(
@@ -49,12 +46,14 @@ class PetsRepository(BaseRepository, SQLAlchemyRepository):
                 photo=file_path
             )
 
-    async def update(self, pet_id: int, data: UpdatePetDTO):
+    async def update(self, pet_id: int, data: UpdatePetDTO, file_image: UploadFile):
+        file_path = await download_image(file_image)
         async with async_session() as session:
-            return await self.update_object(
+            return await self.update_values(
                 session,
-                data,
-                self.model.id == pet_id
+                self.model.id == pet_id,
+                **data.model_dump(),
+                photo=file_path
             )
 
     async def delete(self, pet_id: int):

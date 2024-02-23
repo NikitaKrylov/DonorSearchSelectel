@@ -37,6 +37,7 @@ class CreatePetDTO(BaseModel):
     blood_type: str
     breed: str
     has_graft: bool
+    weight: float
 
 
 class GetPetDTO(CreatePetDTO):

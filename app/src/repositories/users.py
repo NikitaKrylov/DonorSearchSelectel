@@ -1,10 +1,11 @@
-from fastapi import HTTPException
+from fastapi import HTTPException, UploadFile
 from starlette import status
 
 from src.database.db import async_session
 from src.database.models.users import User
 from src.repositories.base import SQLAlchemyRepository, BaseRepository
 from src.schemas.users import GetUserDTO, CreateUserDTO, UpdateUserDTO, UserFilterData
+from src.services.files import download_image
 
 
 class UserRepository(BaseRepository, SQLAlchemyRepository):
@@ -31,12 +32,14 @@ class UserRepository(BaseRepository, SQLAlchemyRepository):
                 GetUserDTO
             )
 
-    async def update(self, user_id: int, data: UpdateUserDTO) -> None:
+    async def update(self, user_id: int, data: UpdateUserDTO, file_image: UploadFile) -> None:
+        file_path = await download_image(file_image)
         async with async_session() as session:
-            return await self.update_object(
+            return await self.update_values(
                 session,
-                data,
-                self.model.id == user_id
+                self.model.id == user_id,
+                **data.model_dump(),
+                photo=file_path
             )
 
     async def delete(self, user_id: int) -> None:

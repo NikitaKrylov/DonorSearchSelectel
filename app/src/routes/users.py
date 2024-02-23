@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, UploadFile, File
 from fastapi.security import OAuth2PasswordRequestForm
 
 from src.services import users as service
 from src.repositories.users import UserRepository
 from src.schemas.users import GetUserDTO, CreateUserDTO, UpdateUserDTO, Token, UserFilterData
 from src.dependencies.users import get_current_user
+from src.services.email import create_suggestion_message, send_email
 
 router = APIRouter(
     tags=['Users'],
@@ -40,8 +41,8 @@ async def delete_user(user_id: int):
 
 
 @router.patch('/{user_id}')
-async def change_user(user_id: int, data: UpdateUserDTO):
-    return await repository.update(user_id, data)
+async def change_user(user_id: int, data: UpdateUserDTO = Depends(), image_file: UploadFile = File(...)):
+    return await repository.update(user_id, data, image_file)
 
 
 @router.post('/login', response_model=Token)

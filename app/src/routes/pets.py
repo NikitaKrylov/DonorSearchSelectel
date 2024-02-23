@@ -32,8 +32,8 @@ async def delete_pet(pet_id: int):
 
 
 @router.patch('/{pet_id}')
-async def change_pet_info(pet_id: int, data: UpdatePetDTO):
-    return await repository.update(pet_id, data)
+async def change_pet_info(pet_id: int, data: UpdatePetDTO = Depends(), image_file: UploadFile = File(...)):
+    return await repository.update(pet_id, data, image_file)
 
 
 

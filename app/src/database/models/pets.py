@@ -16,6 +16,7 @@ class Pet(Base):
     name: Mapped[str]
     photo: Mapped[str]
     age: Mapped[int]
+    weight: Mapped[float]
     pet_type: Mapped[PetType]
     blood_type: Mapped[str]
     has_graft: Mapped[bool]

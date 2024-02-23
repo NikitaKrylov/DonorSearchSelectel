@@ -8,11 +8,14 @@ class User(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     email: Mapped[str] = mapped_column(index=True, unique=True)
+    photo: Mapped[str | None]
     password: Mapped[str]
     address: Mapped[str | None] = mapped_column(default=None)
     age: Mapped[int | None] = mapped_column(default=None)
-
     pets: Mapped[list['Pet']] = relationship(back_populates='owner', uselist=True)
+    phone: Mapped[str | None]
+    telegram: Mapped[str | None]
+    share_contacts: Mapped[bool] = True
 
 
 
