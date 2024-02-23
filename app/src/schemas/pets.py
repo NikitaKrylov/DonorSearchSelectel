@@ -68,6 +68,11 @@ class GetDonationTransactionDTO(BaseModel):
     status: DonationTransactionStatus
     reason: str
     created_at: datetime
+    related_transaction_id: int | None = None
+
+
+class GetDonationTransactionWithRelatedDTO(GetDonationTransactionDTO):
+    related_transaction: GetDonationTransactionDTO | None
 
 
 class CreateDonationTransactionDTO(BaseModel):

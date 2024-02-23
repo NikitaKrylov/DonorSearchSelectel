@@ -27,8 +27,10 @@ class BloodDonationTransaction(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
 
-    subject: Mapped[Pet] = relationship(uselist=False)
+    subject: Mapped[Pet] = relationship(uselist=False, lazy='immediate')
     subject_id: Mapped[int] = mapped_column(ForeignKey('pets.id', ondelete='CASCADE'))
+    related_transaction_id: Mapped[int] = mapped_column(ForeignKey('blood_donation_transactions.id'), nullable=True, default=None)
+    related_transaction: Mapped['BloodDonationTransaction'] = relationship(uselist=False)
     reason: Mapped[str]
     volume: Mapped[float]
     type: Mapped[TransactionType]

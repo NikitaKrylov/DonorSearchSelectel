@@ -1,14 +1,15 @@
 import aiofiles
-from fastapi import UploadFile
+from fastapi import UploadFile, HTTPException
 from sqlalchemy import and_, select
 from sqlalchemy.orm import joinedload
+from starlette import status
 
 from src.repositories.base import SQLAlchemyRepository, BaseRepository
 from src.database.models.pets import Pet, BloodDonationTransaction
 from src.database.db import async_session
 from src.schemas.base import BaseFilterData
 from src.schemas.pets import GetPetDTO, CreatePetDTO, UpdatePetDTO, TransactionType, CreateDonationTransactionDTO, \
-    GetDonationTransactionDTO, UpdateDonationTransactionDTO, PetFilterData, TransactionFilterData
+    GetDonationTransactionDTO, UpdateDonationTransactionDTO, PetFilterData, TransactionFilterData, GetDonationTransactionWithRelatedDTO
 
 
 class PetsRepository(BaseRepository, SQLAlchemyRepository):
@@ -72,18 +73,18 @@ class BloodDonationTransactionRepository(BaseRepository, SQLAlchemyRepository):
             return await self.get_object(
                 session,
                 and_(self.model.type == transaction_type, self.model.id == transaction_id),
-                GetDonationTransactionDTO,
-                joinedload(self.model.subject)
+                GetDonationTransactionWithRelatedDTO,
+                (joinedload(self.model.related_transaction), joinedload(self.model.subject))
             )
 
     async def get_all(self, transaction_type: TransactionType, limit: int = 100, offset: int = 0, filter_data: TransactionFilterData | None = None) -> list[GetDonationTransactionDTO]:
         async with async_session() as session:
             return await self.get_objects(
                 session,
-                GetDonationTransactionDTO,
+                GetDonationTransactionWithRelatedDTO,
                 limit,
                 offset,
-                joinedload(self.model.subject),
+                (joinedload(self.model.subject), joinedload(self.model.related_transaction)),
                 filter_data=filter_data
             )
 
@@ -116,5 +117,44 @@ class BloodDonationTransactionRepository(BaseRepository, SQLAlchemyRepository):
             await self.delete_object(
                 session,
                 and_(BloodDonationTransaction.id == transaction_id, BloodDonationTransaction.type == transaction_type)
+            )
+
+    async def bind_transactions(self, transaction_type: TransactionType, transaction_id: int, related_transaction_id: int):
+        transaction = await self.get(transaction_type, transaction_id)
+
+        if transaction is None:
+            raise HTTPException(status.HTTP_400_BAD_REQUEST, 'Данных по запросу не найдено.')
+
+        if transaction.related_transaction_id is not None:
+            raise HTTPException(status.HTTP_400_BAD_REQUEST, 'Этот питомец уже иммеет отклик')
+
+        async with async_session() as session:
+            related_transaction = await self.get_object(
+                session,
+                self.model.id == related_transaction_id,
+                GetDonationTransactionDTO,
+                joinedload(self.model.subject)
+            )
+
+            if related_transaction is None:
+                raise HTTPException(status.HTTP_400_BAD_REQUEST, 'Данных по запросу не найдено.')
+
+            if transaction.type == related_transaction.type:
+                raise HTTPException(status.HTTP_400_BAD_REQUEST, 'Для связывания посты должны иметь разные типы')
+
+            if related_transaction.related_transaction_id is not None:
+                raise HTTPException(status.HTTP_400_BAD_REQUEST, 'Этот питомец уже иммеет отклик')
+
+            await self.update_values(
+                session,
+                self.model.id == transaction_id,
+                related_transaction_id=related_transaction_id,
+
+            )
+            await self.update_values(
+                session,
+                self.model.id == related_transaction_id,
+                related_transaction_id=transaction_id,
+
             )
 

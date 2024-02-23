@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Type, Any
+from typing import Type, Any, Iterable
 
 from fastapi import HTTPException
 from pydantic import BaseModel
@@ -58,12 +58,16 @@ class SQLAlchemyRepository:
             session: AsyncSession,
             expression: ColumnElement[bool] | _HasClauseElement[bool] | SQLCoreOperations[bool],
             model_schema: Type[BaseModel],
-            options: ExecutableOption = None
+            options: Iterable[ExecutableOption] | ExecutableOption = None
     ):
         query = select(self.model).where(expression)
 
         if options:
-            query = query.options(options)
+            if isinstance(options, Iterable):
+                for option in options:
+                    query = query.options(option)
+            else:
+                query = query.options(options)
 
         result = await session.execute(query)
         _obj = result.scalar_one_or_none()
@@ -79,7 +83,7 @@ class SQLAlchemyRepository:
             model_schema: Type[BaseModel],
             limit: int = 1000,
             offset: int = 0,
-            options:  ExecutableOption = None,
+            options:  Iterable[ExecutableOption]| ExecutableOption = None,
             expression: ColumnElement[bool] | _HasClauseElement[bool] | SQLCoreOperations[bool] = None,
             filter_data: BaseFilterData | None = None
     ):
@@ -91,7 +95,11 @@ class SQLAlchemyRepository:
             query = query.filter_by(**filter_data.get_filters())
 
         if options:
-            query = query.options(options)
+            if isinstance(options, Iterable):
+                for option in options:
+                    query = query.options(option)
+            else:
+                query = query.options(options)
 
         result = await session.execute(query)
         return [model_schema.model_validate(obj, from_attributes=True) for obj in result.scalars().all()]
@@ -134,6 +142,16 @@ class SQLAlchemyRepository:
             return None
 
         return model_schema.model_validate(db_obj, from_attributes=True)
+
+    async def update_values(
+            self,
+            session: AsyncSession,
+            expression: ColumnElement[bool] | _HasClauseElement[bool] | SQLCoreOperations[bool],
+            **values
+    ) -> None:
+        stmp = update(self.model).where(expression).values(**values)
+        await session.execute(stmp)
+        await session.commit()
 
         
         
