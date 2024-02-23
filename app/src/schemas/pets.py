@@ -1,3 +1,5 @@
+from fastapi import UploadFile
+from fastapi.params import Form, File
 from pydantic import BaseModel
 from enum import Enum
 from .base import BaseFilterData
@@ -15,8 +17,10 @@ class PetType(str, Enum):
     HORSE = 'Лошадь'
 
 
-class DonationRequestStatus(str, Enum):
-    pass
+class DonationTransactionStatus(str, Enum):
+    ACTIVE = 'Активна'
+    COMPLETED = 'Завершена'
+    IN_PROGRESS = 'В процессе/обработке'
 
 
 class TransactionType(str, Enum):
@@ -29,6 +33,8 @@ class CreatePetDTO(BaseModel):
     age: int
     pet_type: PetType
     blood_type: str
+    breed: str
+    has_graft: bool
 
 
 class GetPetDTO(CreatePetDTO):
@@ -47,6 +53,7 @@ class PetFilterData(BaseFilterData):
     owner_id: int | None = None
     pet_type: PetType | None = None
     blood_type: str | None = None
+    breed: str | None = None
 
 
 class GetDonationTransactionDTO(BaseModel):
@@ -55,23 +62,27 @@ class GetDonationTransactionDTO(BaseModel):
     subject: GetPetDTO
     volume: float
     type: TransactionType
-    status: str
+    status: DonationTransactionStatus
+    reason: str
 
 
 class CreateDonationTransactionDTO(BaseModel):
     subject_id: int
     volume: float
-    status: str
+    status: DonationTransactionStatus
+    reason: str
 
 
 class UpdateDonationTransactionDTO(BaseModel):
     volume: float
     type: TransactionType
-    status: str
+    status: DonationTransactionStatus
+    reason: str
+
 
 
 class TransactionFilterData(BaseFilterData):
     type: TransactionType | None = None
-    status: str | None = None
+    status: DonationTransactionStatus | None = None
     subject_id: int | None = None
     volume: int | None = None

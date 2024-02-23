@@ -1,3 +1,6 @@
+from fastapi import HTTPException
+from starlette import status
+
 from src.database.db import async_session
 from src.database.models.users import User
 from src.repositories.base import SQLAlchemyRepository, BaseRepository
@@ -16,6 +19,11 @@ class UserRepository(BaseRepository, SQLAlchemyRepository):
             )
 
     async def create(self, data: CreateUserDTO) -> GetUserDTO:
+        existed_user = await self.get_one_by(self.model.email == data.email, True)
+
+        if existed_user is not None:
+            raise HTTPException(status.HTTP_400_BAD_REQUEST, "Пользователь с такой почтой уже существует.")
+
         async with async_session() as session:
             return await self.create_object(
                 session,

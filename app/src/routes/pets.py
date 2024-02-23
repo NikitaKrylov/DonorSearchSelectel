@@ -27,12 +27,12 @@ async def create_pet(data: CreatePetDTO, current_user=Depends(get_current_user))
 
 
 @router.delete('/{pet_id}')
-async def delete_pet(pet_id: int, current_user=Depends(get_current_user)):
+async def delete_pet(pet_id: int):
     return await repository.delete(pet_id)
 
 
 @router.patch('/{pet_id}')
-async def change_pet_info(pet_id: int, data: UpdatePetDTO, current_user=Depends(get_current_user)):
+async def change_pet_info(pet_id: int, data: UpdatePetDTO):
     return await repository.update(pet_id, data)
 
 

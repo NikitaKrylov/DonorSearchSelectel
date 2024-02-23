@@ -1,6 +1,6 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from src.schemas.pets import PetType, TransactionType
+from src.schemas.pets import PetType, TransactionType, DonationTransactionStatus
 from src.database.db import Base
 
 
@@ -15,6 +15,8 @@ class Pet(Base):
     age: Mapped[int]
     pet_type: Mapped[PetType]
     blood_type: Mapped[str]
+    has_graft: Mapped[bool]
+    breed: Mapped[str]
 
 
 class BloodDonationTransaction(Base):
@@ -24,7 +26,8 @@ class BloodDonationTransaction(Base):
 
     subject: Mapped[Pet] = relationship(uselist=False)
     subject_id: Mapped[int] = mapped_column(ForeignKey('pets.id', ondelete='CASCADE'))
+    reason: Mapped[str]
     volume: Mapped[float]
     type: Mapped[TransactionType]
-    status: Mapped[str]
+    status: Mapped[DonationTransactionStatus]
 
