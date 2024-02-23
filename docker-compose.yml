@@ -38,6 +38,7 @@ services:
       - ./nginx:/etc/nginx/conf.d
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/www/html:/var/www/html
+      - ./front_vite/dist:/etc/nginx/dist/front
       # - ./static:/etc/nginx/static_img
     ports:
       - 80:80
