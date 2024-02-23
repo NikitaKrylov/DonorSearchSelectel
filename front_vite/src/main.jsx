@@ -7,6 +7,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { PrivateRoute } from './hoc/PrivateRoute.jsx';
 import { AuthProvider } from './hoc/PrivateRoute.jsx';
 import CardRequest from './pages/CardRequest/CardRequest.jsx';
+import PetPageInfo from './components/PetPageInfo/PetPageInfo.jsx';
+import ProfilePet from './pages/ProfilePet/ProfilePet.jsx';
 
 const routes = createBrowserRouter([
     {
@@ -27,6 +29,12 @@ const routes = createBrowserRouter([
             <PrivateRoute>
                 <CardRequest />
             </PrivateRoute>
+        ),
+    },
+    {
+        path: '/petpage',
+        element: (
+                <ProfilePet />
         ),
     },
 ]);
