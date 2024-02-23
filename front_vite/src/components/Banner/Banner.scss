@@ -1,0 +1,24 @@
+.banner {
+    background-image: url(..//Banner/banner_img.png);
+    width: 1240px;
+    height: 716px;
+    margin: 0 auto;
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-family: "Montserrat Alternates", sans-serif;
+    &__btn {
+        border: 15px solid #FAF4F4;
+        border-radius: 100px;
+        width: 302px;
+        height: 98px;
+        position: relative;
+        margin-bottom: -34px;
+        font-size:30px;
+        font-weight: 600;
+        background-color: #FF2A23;
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+}

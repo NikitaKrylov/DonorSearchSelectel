@@ -1,0 +1,36 @@
+.profile {
+    width: 475px;
+    height: 651px;
+    border-radius: 45px;
+    background-color: #fff;
+    margin: auto;
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        font-family: 'Montserrat Alternates', sans-serif;
+        font-style: normal;
+        padding: 65px 20px;
+    }
+
+    &__photo {
+        width: 231px;
+        height: 231px;
+    }
+    &__info {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__questions {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+    &__data {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+}
