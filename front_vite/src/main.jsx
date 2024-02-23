@@ -6,7 +6,7 @@ import Account from './pages/Account/Account.jsx';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { PrivateRoute } from './hoc/PrivateRoute.jsx';
 import { AuthProvider } from './hoc/PrivateRoute.jsx';
-import {CardRequest} from './pages/CardRequest/CardRequest.jsx';
+import CardRequest from './pages/CardRequest/CardRequest.jsx';
 
 const routes = createBrowserRouter([
     {
@@ -16,22 +16,25 @@ const routes = createBrowserRouter([
     {
         path: '/account', // /account
         element: (
-                <PrivateRoute><Account /></PrivateRoute>
+            <PrivateRoute>
+                <Account />
+            </PrivateRoute>
         ),
-        
     },
-    { 
-        path: '/request', 
-        element: (<CardRequest />), 
+    {
+        path: '/request',
+        element: (
+            <PrivateRoute>
+                <CardRequest />
+            </PrivateRoute>
+        ),
     },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-
     <React.StrictMode>
         <AuthProvider>
             <RouterProvider router={routes} />
         </AuthProvider>
-        
-    </React.StrictMode>,
-  )
+    </React.StrictMode>
+);

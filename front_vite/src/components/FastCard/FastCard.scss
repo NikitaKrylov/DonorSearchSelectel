@@ -1,0 +1,16 @@
+.fastcard {
+    width: 289px;
+    height: 360px;
+    &__content {
+        width: 289px;
+        height: 210px;
+        flex-shrink: 0;
+        border-radius: 30px;
+        background: #fff;
+    }
+    &__photo {
+        width: 289px;
+        height: 181px;
+
+    }
+}

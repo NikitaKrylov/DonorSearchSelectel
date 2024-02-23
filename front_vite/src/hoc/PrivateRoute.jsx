@@ -11,7 +11,6 @@ export const AuthProvider = ({children}) => {
     const auth_result = localStorage.getItem('authorized') ? JSON.parse(localStorage.getItem('authorized')) : {
         authorized: false
     }
-    set
     console.log(auth_result)
     useEffect(() => {
         const checkAuth = async () => {
