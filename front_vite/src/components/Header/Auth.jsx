@@ -3,25 +3,8 @@ import axios from 'axios';
 import { TextField, Button } from "@mui/material";
 import { jwtDecode as jwt } from "jwt-decode";
 import Cookies from 'js-cookie';
-const BaseUrl = 'http://31.129.49.245:8000/users'
+const BaseUrl = 'http://31.129.49.245/backend/users'
 import { Navigate, useNavigate } from "react-router-dom";
-// async function Login(e) {
-//     e.preventDefault();
-//     const formData = new FormData(e.currentTarget)
-//     let credentials = { 'username': formData.get('username'), 'password': formData.get('password') };
-//     fetch(BaseUrl + "/login", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/x-www-form-urlencoded"
-//         },
-//         body: new URLSearchParams(credentials)
-
-//     }).then((result) => {
-
-//     });
-//     let prom = (await promise).json()
-
-// }
 
 const Auth = ({ changeMode }) => {
     const navigate = useNavigate()
