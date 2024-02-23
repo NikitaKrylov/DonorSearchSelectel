@@ -50,7 +50,7 @@ const Auth = ({ changeMode }) => {
                 }
             });
 
-            setData(res?.access_token);
+            // setData(res?.access_token);
             localStorage.setItem("authorized",JSON.stringify(true));
             
             
@@ -72,8 +72,9 @@ const Auth = ({ changeMode }) => {
         const decoded = jwt(jwt_token);
         setUser(decoded);
         Cookies.set("jwt_authorization",jwt_token, { expires: new Date(decoded.exp * 60 * 60 * 24),});
-        localStorage.setItem('user',JSON.stringify(user));
     }
+
+
     return (
         <div className="modal">
             <div className="modal__wrap">

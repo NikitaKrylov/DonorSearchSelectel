@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { useContext, createContext,  useEffect, useState, Navigate} from "react";
 
 export const AuthContext = createContext({
@@ -11,13 +12,13 @@ export const AuthProvider = ({children}) => {
     const auth_result = localStorage.getItem('authorized') ? JSON.parse(localStorage.getItem('authorized')) : {
         authorized: false
     }
-    set
     console.log(auth_result)
     useEffect(() => {
         const checkAuth = async () => {
             if (isLoading) {
                 if (auth_result) {
                     setIsLoading(false);
+                    setUser(Cookies.get("jwt_authorization"))
                 }
                 
                 else {
