@@ -50,7 +50,7 @@ const Auth = ({ changeMode }) => {
                 }
             });
 
-            setData(res?.access_token);
+            // setData(res?.access_token);
             localStorage.setItem("authorized",JSON.stringify(true));
             
             
@@ -72,22 +72,23 @@ const Auth = ({ changeMode }) => {
         const decoded = jwt(jwt_token);
         setUser(decoded);
         Cookies.set("jwt_authorization",jwt_token, { expires: new Date(decoded.exp * 60 * 60 * 24),});
-        localStorage.setItem('user',JSON.stringify(user));
     }
+
+
     return (
         <div className="modal">
             <div className="modal__wrap">
-                <h2 className="modal__title">ВХОД</h2>
+                <h2 className="modal__title">Войди в аккаунт<br/>или <span onClick={changeMode} className="modal__link">зарегистрируйся</span></h2>
                 <div className="modal__inputs">
-                    <input placeholder="USERNAME" name='username' onChange={(e) => setUsername(e.target.value)}></input>
-                    <input placeholder="PASSWORD" type="password" name='password' onChange={(e) => setPassword(e.target.value)}></input>
+                    <div className='modal__inputs_i'>
+                        <input placeholder="Почта" name='username' onChange={(e) => setUsername(e.target.value)}></input>
+                    </div>
+                    <div className='modal__inputs_i'>
+                        <input placeholder="Пароль" type="password" name='password' onChange={(e) => setPassword(e.target.value)}></input>
+                    </div>
                     {error || authError && <p className="modal__error">Неправильный логин или пароль</p>}
-        
                 </div>
-                <div className="modal__link-wrap">
-                    Новенький? <span onClick={changeMode} className="modal__link">Зарегистрироваться</span>
-                </div>
-                <button className="modal__button" variant="contained" onClick={handleLoginClick}>Log In</button>
+                <button className="modal__button" variant="contained" onClick={handleLoginClick}>Войти</button>
                 
                 
             </div>

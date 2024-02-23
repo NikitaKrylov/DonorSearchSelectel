@@ -41,20 +41,18 @@ const Register = ({ changeMode }) => {
     return (
         <div className="modal">
             <div className="modal__wrap">
-                <h2 className="modal__title">РЕГИСТРАЦИЯ</h2>
+            <h2 className="modal__title">Зарегистрируйся<br/>или <span onClick={changeMode} className="modal__link">войди в аккаунт</span></h2>
                 <div className="modal__inputs">
-                    <input placeholder="EMAIL" name='email' onChange={(e) => setEmail(e.target.value)}></input>
-                    <input placeholder="PASSWORD" name='password' onChange={(e) => setPassword(e.target.value)}></input>
+                    <div className='modal__inputs_i'>
+                        <input placeholder="Почта" name='username' onChange={(e) => setUsername(e.target.value)}></input>
+                    </div>
+                    <div className='modal__inputs_i'>
+                        <input placeholder="Пароль" type="password" name='password' onChange={(e) => setPassword(e.target.value)}></input>
+                    </div>
                     {error || authError && <p className="modal__error">Неправильный логин или пароль</p>}
                 </div>
-                <div className="modal__link-wrap">
-                    Уже зарегестрированы?{' '}
-                    <span onClick={changeMode} className="modal__link">
-                        Войти
-                    </span>
-                </div>
 
-                <button className="modal__button" variant="contained" fullWidth onClick={handleLoginClick}>Continue </button>
+                <button className="modal__button" variant="contained" fullWidth onClick={handleLoginClick}>Создать</button>
             </div>
         </div>
     );

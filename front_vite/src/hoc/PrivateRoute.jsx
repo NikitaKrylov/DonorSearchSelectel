@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { useContext, createContext,  useEffect, useState, Navigate} from "react";
 
 export const AuthContext = createContext({
@@ -17,6 +18,7 @@ export const AuthProvider = ({children}) => {
             if (isLoading) {
                 if (auth_result) {
                     setIsLoading(false);
+                    setUser(Cookies.get("jwt_authorization"))
                 }
                 
                 else {
