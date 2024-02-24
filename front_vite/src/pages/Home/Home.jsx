@@ -16,6 +16,11 @@ import {useState} from 'react';
 import Footer from '../../components/Footer/Footer.jsx';
 import { Articles } from '../../components/Article/utils.js';
 import HeaderUser from '../../components/HeaderUser/HeaderUser.jsx';
+import axios from 'axios';
+import { useEffect } from 'react';
+import baseUrl from '../../../config.js'
+
+
 
 const Home = () => {
     const [selectedQuestion, setSelectedQuestion] = useState(null);
@@ -23,6 +28,37 @@ const Home = () => {
     const handleSelect = (question) => {
         setSelectedQuestion(question);
     };
+    const [latestPets, setLatestPets] = useState([]);
+    const [petsRequests, setPetsRequests] = useState([]);
+
+
+    const l1 = () => { axios.get(baseUrl + '/donations/request', {
+        params: {
+            type: 'request',
+            status: 'Завершена'
+        }
+    }).then(response => {
+        setLatestPets(response.data)
+    })
+    }
+    useEffect(() => {
+        l1();
+     }, []);
+
+
+     const l2 = () => {
+        axios.get(baseUrl + '/donations/request', {
+            params: {
+                status: 'Активна'
+            }
+        }).then(response => {setPetsRequests(response.data)})
+     }
+     useEffect(() => {
+        l2();
+     }, []);
+
+
+
     return (
         <div className='home'>
             {auth_result ? (<HeaderUser />):(<Header />)}
@@ -31,11 +67,15 @@ const Home = () => {
             <h2 className='home__title'>Им подарили новую жизнь</h2>
             <div className='home__cards'>
                 {
-                    Pets.map((data, index) => {
+                    
+                latestPets.map((data, index) => {
+                    console.log(data)
                     return (
-                        <Card key={index} data={data} />
+                    <Card key={index} data={data} />
                     )
                 })
+                       
+                    
                 }
             </div>
             <div className="home__img"></div>
@@ -57,7 +97,7 @@ const Home = () => {
             <button className='home__more-btn'>Смотреть все</button>
             <div className='home__fastcards'>
                 {
-                    FastPets.map((data, index) => {
+                    petsRequests.map((data, index) => {
                     return (
                         <FastCard key={index} data={data} />
                     )

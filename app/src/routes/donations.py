@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from src.schemas.pets import TransactionType, CreateDonationTransactionDTO, GetDonationTransactionDTO, \
-    UpdateDonationTransactionDTO, TransactionFilterData, GetDonationTransactionWithRelatedDTO
+    UpdateDonationTransactionDTO, TransactionFilterData, GetDonationTransactionWithRelatedDTO, DonationTransactionStatus
 from src.repositories.pets import BloodDonationTransactionRepository
 
 router = APIRouter(
@@ -39,6 +39,11 @@ async def change_donation_transaction(transaction_type: TransactionType, transac
 @router.post('/{transaction_type}/{transaction_id}/respond/{related_transaction_id}')
 async def bind_donation_transactions(transaction_type: TransactionType, transaction_id: int, related_transaction_id: int):
     await repository.bind_transactions(transaction_type, transaction_id, related_transaction_id)
+
+
+@router.post('/{transaction_type}/{transaction_id}/respond/{related_transaction_id}/complete')
+async def bind_donation_transactions(transaction_type: TransactionType, transaction_id: int, related_transaction_id: int):
+    await repository.change_binding_transaction_status(transaction_type, transaction_id, related_transaction_id, DonationTransactionStatus.COMPLETED)
 
 
 
