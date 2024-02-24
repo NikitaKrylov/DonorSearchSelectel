@@ -4,6 +4,8 @@
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
     background-color: #fff;
     border-radius: 30px;
+    transition: all linear 0.5s;
+    -webkit-transition: all linear 0.5s;
     &:hover {
         transform: scale(1.05);
     }

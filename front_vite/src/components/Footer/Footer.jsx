@@ -1,5 +1,4 @@
 import './Footer.scss';
-import foot from '../Footer/footer.png';
 const Footer = () => {
     // let emailValue = '';
 
@@ -27,7 +26,7 @@ const Footer = () => {
             <div className="footer">
                 <div className='footer__up'>
                     <div className="footer__column">
-                        <a class="footer__num" href="tel:+7(952)8120000">
+                        <a className="footer__num" href="tel:+7(952)8120000">
                             +7 (952) 812 00 00
                         </a>
                         <span className="footer__text">Звонок по России бесплатный</span>
