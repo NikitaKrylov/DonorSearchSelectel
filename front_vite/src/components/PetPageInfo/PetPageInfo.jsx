@@ -3,6 +3,8 @@ import petphoto from "../PetPageInfo/pet_photo.png";
 import './PetPageInfo.scss';
 import { Navigate, useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import awards from '../PetPageInfo/your_awards.png';
+import postcard from '../PetPageInfo/postcard.png';
 const PetPageInfo = ()=> {
     const [retn,setRetn] = useState(false);
     const navigate = useNavigate();
@@ -10,7 +12,7 @@ const PetPageInfo = ()=> {
         <div>
             <div className='upper_block'>
                 <div className='upper_block__retn'>
-                    <Link to="/account"><button onClick={navigate("/")}>&lt;Назад</button></Link>
+                    <Link to="/account"><button>&lt;Назад</button></Link>
                 </div>
                 <div className='upper_block__redact'>
                     <button>Редактировать</button>
@@ -54,6 +56,17 @@ const PetPageInfo = ()=> {
                         
                             
                     </div>
+                    
+                
+                </div>
+            </div>
+            <div className='bottom_block'>
+                <div className='bottom_block__post'>
+                    <span>Открытка</span>
+                    <img src={postcard} width="271px" height="301px"/>
+                </div>
+                <div className='bottom_block__ur_awards'>
+                    <img src={awards}/>
                 </div>
             </div>
         </div>
