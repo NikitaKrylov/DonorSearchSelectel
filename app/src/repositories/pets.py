@@ -9,7 +9,7 @@ from src.database.models.pets import Pet, BloodDonationTransaction
 from src.database.db import async_session
 from src.schemas.base import BaseFilterData
 from src.schemas.pets import GetPetDTO, CreatePetDTO, UpdatePetDTO, TransactionType, CreateDonationTransactionDTO, \
-    GetDonationTransactionDTO, UpdateDonationTransactionDTO, PetFilterData, TransactionFilterData, GetDonationTransactionWithRelatedDTO
+    GetDonationTransactionDTO, UpdateDonationTransactionDTO, PetFilterData, TransactionFilterData, GetDonationTransactionWithRelatedDTO, DonationTransactionStatus
 from src.services.files import download_image
 
 
@@ -94,14 +94,14 @@ class BloodDonationTransactionRepository(BaseRepository, SQLAlchemyRepository):
             await session.commit()
             await session.refresh(new_obj)
 
-            query = select(self.model).where(self.model.id == new_obj.id).options(joinedload(self.model.subject))
+            query = select(self.model).where(self.model.id == new_obj.id).options(joinedload(self.model.subject), joinedload(self.model.related_transaction))
             result = await session.execute(query)
             db_obj = result.scalar_one_or_none()
 
             if db_obj is None:
                 return db_obj
 
-            return GetDonationTransactionDTO.model_validate(db_obj, from_attributes=True)
+            return GetDonationTransactionWithRelatedDTO.model_validate(db_obj, from_attributes=True)
 
     async def update(self, transaction_type: TransactionType, transaction_id: int, data: UpdateDonationTransactionDTO) -> None:
         async with async_session() as session:
@@ -157,3 +157,25 @@ class BloodDonationTransactionRepository(BaseRepository, SQLAlchemyRepository):
 
             )
 
+    async def change_binding_transaction_status(self, transaction_type: TransactionType, transaction_id: int, related_transaction_id: int, new_status: DonationTransactionStatus):
+        transaction = await self.get(transaction_type, transaction_id)
+
+        async with async_session() as session:
+            related_transaction = await self.get_object(
+                session,
+                self.model.id == related_transaction_id,
+                GetDonationTransactionDTO,
+                joinedload(self.model.subject)
+            )
+
+            await self.update_values(
+                session,
+                self.model.id == transaction_id,
+                status=new_status,
+
+            )
+            await self.update_values(
+                session,
+                self.model.id == related_transaction_id,
+                status=new_status,
+            )

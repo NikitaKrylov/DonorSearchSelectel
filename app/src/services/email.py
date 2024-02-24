@@ -2,7 +2,7 @@ import smtplib
 from email.mime.text import MIMEText
 
 
-def create_suggestion_message(pet_name: str, image_path: str):
+def create_suggestion_message(email: str, pet_name: str):
     message = MIMEText("Хууууй")
     message['From'] = 'idoverchiviiloh@yandex.ru'
     message['To'] = 'nikitak11092005@gmail.com'
