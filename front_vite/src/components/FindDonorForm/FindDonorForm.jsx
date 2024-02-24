@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './FindDonorForm.scss';
 import Pet from './Pet';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import baseUrl from '../../../config';
 import { useNavigate, Navigate} from 'react-router-dom';
 
@@ -22,6 +23,17 @@ const FindDonorForm = () => {
     let [selectedPet,setSelectedPet] = useState();
     const navigate = useNavigate();
 
+    axios.get(baseUrl + '/users/me', {
+        headers: {
+            'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
+        }
+    }).then(
+        response => {setCurrentUser(response.data.id)}
+    ).catch(err => {
+        console.log(err)
+
+    })
+
     const SaveDonorSearchData = () =>{
         axios.post(baseUrl + '/donations/request', {
             subject_id: selectedPet.id,
@@ -35,17 +47,23 @@ const FindDonorForm = () => {
         })
     }
 
-    axios.get(baseUrl + '/users/me').then(
-        response => {setCurrentUser(response.data)}
-    ).catch(err => {
-        console.log(err)
-
+    axios.get(baseUrl + '/users/me', {
+        headers: {
+            'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
+        }
+    }).then(response => {
+        console.log(response.data)
+        setCurrentUser(response.data)
+    }).catch(err => {
+        alert(err)
     })
+
+    
 
 
     axios.get(baseUrl + '/pets', {
         params: {
-            owner_id: 1
+            owner_id: currentUser
         }
     }).then(response => {
         setAvailiablePets(response.data)

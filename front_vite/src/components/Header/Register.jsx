@@ -3,8 +3,8 @@ import axios from 'axios';
 import { TextField, Button } from "@mui/material";
 import { jwtDecode as jwt } from "jwt-decode";
 import Cookies from 'js-cookie';
-const BaseUrl = 'http://31.129.49.245/backend/users'
 import { Navigate, useNavigate } from "react-router-dom";
+import baseUrl from '../../../config';
 
 const Register = ({ changeMode }) => {
     const [data, setData] = useState({});
@@ -25,7 +25,7 @@ const Register = ({ changeMode }) => {
             password
         }
 
-        axios.post(BaseUrl, {
+        axios.post(BaseUrl + '/users', {
             
                 email,
                 password
