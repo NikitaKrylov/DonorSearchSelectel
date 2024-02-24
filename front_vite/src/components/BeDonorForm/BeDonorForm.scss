@@ -80,8 +80,9 @@
         }
         &__pets{
             width: 755px;
-            min-height: 100px;
             height: auto;
+            min-height: 100px;
+            padding-bottom: 20px;
             text-align: start;
             flex-shrink: 0;
             border-radius: 45px;

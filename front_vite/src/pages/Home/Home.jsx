@@ -18,7 +18,7 @@ import { Articles } from '../../components/Article/utils.js';
 import HeaderUser from '../../components/HeaderUser/HeaderUser.jsx';
 import axios from 'axios';
 import { useEffect } from 'react';
-import baseUrl from '../../../config.js'
+import baseUrl from '../../../config.js';
 
 
 

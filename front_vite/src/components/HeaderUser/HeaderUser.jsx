@@ -1,15 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import logo from '../../components/Header/logo.svg';
-import photo from '../../components/HeaderUser/ava.png';
-import './HeaderUser.scss';
+import axios from 'axios';
+import baseUrl from '../../../config';
+import React, { useEffect, useState, useCallback, } from 'react';
 
 const HeaderUser = () => {
-    const logout = () => {
-        window.location.href = '/';
-        Cookies.remove('jwt_authorization');
-    };
+    let [user, setUser] = useState({});
+    axios.get(baseUrl + '/users/me', {
+        headers: {
+            'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
+        }
+    }).then(
+        response => {setUser(response.data)}
+    ).catch(err => {
+        console.log(err)
+
+    })
 
     return (
         <header className="header">
@@ -31,7 +38,7 @@ const HeaderUser = () => {
                     <button>
                         <div className="user-header">
                             <div className="user-header__content">
-                                <span className="user-header__content__name">Иван Иванов</span>
+                                <span className="user-header__content__name">{user.email}</span>
                                 <span className="user-header__content__pets">2 питомца</span>
                             </div>
                             <img className="user-header__photo" src={photo} alt="user" />

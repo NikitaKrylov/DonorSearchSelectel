@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
 import './FindDonorForm.scss';
 import Pet from './Pet';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import baseUrl from '../../../config';
+import { useNavigate, Navigate} from 'react-router-dom';
+
+
+
 const FindDonorForm = () => {
     let [mobileCheck,  setMobileCheck] = useState(false);
     let [emailCheck,  setEmailCheck] = useState(false);
@@ -11,6 +18,61 @@ const FindDonorForm = () => {
     let [race,setRace] = useState("");
     let [vet,setVet] = useState("");
     let [date,setDate] = useState("");
+    let [availiablePets,setAvailiablePets] = useState([]);
+    let [currentUser,setCurrentUser] = useState();
+    let [selectedPet,setSelectedPet] = useState();
+    const navigate = useNavigate();
+
+    axios.get(baseUrl + '/users/me', {
+        headers: {
+            'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
+        }
+    }).then(
+        response => {setCurrentUser(response.data.id)}
+    ).catch(err => {
+        console.log(err)
+
+    })
+
+    const SaveDonorSearchData = () =>{
+        axios.post(baseUrl + '/donations/request', {
+            subject_id: selectedPet.id,
+            volume: amount,
+            reason: reason,
+            status: 'Активна'
+        }).then(response => { 
+            navigate("/account");
+        }).catch(err => {
+            alert(err)
+        })
+    }
+
+    axios.get(baseUrl + '/users/me', {
+        headers: {
+            'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
+        }
+    }).then(response => {
+        console.log(response.data)
+        setCurrentUser(response.data)
+    }).catch(err => {
+        alert(err)
+    })
+
+    
+
+
+    axios.get(baseUrl + '/pets', {
+        params: {
+            owner_id: currentUser
+        }
+    }).then(response => {
+        setAvailiablePets(response.data)
+    }).catch(err => {
+        console.log(err)
+
+    })
+    
+
   return (
     <div className='fdonorform'>
         <h4>Оставь заявку в <span>3 шага</span></h4>
@@ -24,7 +86,16 @@ const FindDonorForm = () => {
             <span>Выберите питомца которому нужна кровь </span>
             <div className='fdonorform__st1__pets'>
                 <h3>Ваши питомцы</h3>
-                <Pet />
+                {
+                    availiablePets.map((data, index) => {
+                        const ev = () => {
+                            setSelectedPet(data)
+                        }
+                        return (
+                            <Pet key={index} data={data} onClickEvent={ ev } />
+                        )
+                    })
+                }
             </div>
         </div >
         <div className='fdonorform__st2'>
@@ -34,7 +105,7 @@ const FindDonorForm = () => {
             </h3>
             <div className='fdonorform__st2__inp1'><input onChange={(e) => setReason(e.target.value)} placeholder="Причина поиска крови"/></div>
             <div className='fdonorform__st2__inp2'><input onChange={(e) => setAmount(e.target.value)} placeholder="Нужный объем крови"/></div>
-            <div className='fdonorform__st2__inp3'><input onChange={(e) => setRace(e.target.value)} placeholder="Порода"/></div>
+
             <div className='fdonorform__st2__inp4'><input onChange={(e) => setVet(e.target.value)} placeholder="Выберите удобную вам клинику"/></div>
             <div className='fdonorform__st2__inp5'><input onChange={(e) => setDate(e.target.value)} type="date" placeholder="Укажите сроки(до)"/></div>
             <h5>Укажите, какие ваши контакты показывать пользователям в вашей заявке</h5>
@@ -75,7 +146,7 @@ const FindDonorForm = () => {
         <div className='fdonorform__bot'>
            <span>Отлично, ты все заполнил, отправляй заявку, а мы как можно быстрее найдем тебе подходящего донора</span>
             <div className='fdonorform__bot__btn'>
-                <button>Отправить заявку</button>
+                <button onClick={SaveDonorSearchData}>Отправить заявку</button>
             </div>
         </div>
     </div>

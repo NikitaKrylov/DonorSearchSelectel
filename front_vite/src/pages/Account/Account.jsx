@@ -4,12 +4,12 @@ import Profile from '../../components/Profile/Profile.jsx';
 import PetsProfile from '../../components/PetsProfile/PetsProfile.jsx';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import baseUrl from '../../../config.js';
 
-const $base_url ='http://31.129.49.245:8000'
 
 const Account = () => {
 
-    axios.get('http://31.129.49.245:8000/users/me', {
+    axios.get(baseUrl + '/users/me', {
         headers: {
             "Authorization": "Bearer " + Cookies.get('jwt_authorization')
         }

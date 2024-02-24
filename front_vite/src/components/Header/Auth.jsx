@@ -3,7 +3,7 @@ import axios from 'axios';
 import { TextField, Button } from "@mui/material";
 import { jwtDecode as jwt } from "jwt-decode";
 import Cookies from 'js-cookie';
-const BaseUrl = 'http://31.129.49.245/backend/users'
+import baseUrl from '../../../config';
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Auth = ({ changeMode }) => {
@@ -27,7 +27,7 @@ const Auth = ({ changeMode }) => {
         // }
 
         try {
-            const res = await axios.post(BaseUrl + "/login", {
+            const res = await axios.post(baseUrl + "/users/login", {
                 'username': username,
                 'password': password
             }, 
@@ -40,12 +40,11 @@ const Auth = ({ changeMode }) => {
             Cookies.set("jwt_authorization",res.data.access_token);
             //localStorage.setItem("authorized",JSON.stringify(true));
             
-            
             navigate("/account");
             // console.log("damn")
             
         } catch(err) {
-            setAuthError(true)
+            //setAuthError(true)
             console.log(err)
         }
     }, [username, password])
