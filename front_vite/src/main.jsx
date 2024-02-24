@@ -34,7 +34,10 @@ const routes = createBrowserRouter([
     {
         path: '/petpage',
         element: (
+            <PrivateRoute>
                 <ProfilePet />
+            </PrivateRoute>
+                
         ),
     },
 ]);

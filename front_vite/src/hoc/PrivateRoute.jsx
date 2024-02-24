@@ -1,37 +1,31 @@
 import Cookies from "js-cookie";
-import { useContext, createContext,  useEffect, useState, Navigate} from "react";
+import { useContext, createContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom"; // Assuming you are using React Router
 
 export const AuthContext = createContext({
     user: null,
     isLoading: true
 });
 
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const auth_result = localStorage.getItem('authorized') ? JSON.parse(localStorage.getItem('authorized')) : {
-        authorized: false
-    }
-    console.log(auth_result)
+
     useEffect(() => {
         const checkAuth = async () => {
-            if (isLoading) {
-                if (auth_result) {
-                    setIsLoading(false);
-                    setUser(Cookies.get("jwt_authorization"))
-                }
-                
-                else {
-                    setIsLoading(false);
-                    setUser(null);
-                }
-                // если нет
-               
+            const auth_result = Cookies.get("jwt_authorization");
+            if (auth_result) {
+                setUser(auth_result);
+                console.log("User authenticated");
+            } else {
+                setUser(null);
+                console.log("User not authenticated");
             }
+            setIsLoading(false);
         }
 
         checkAuth();
-    }, [isLoading]);
+    }, []);
 
     return (
         <AuthContext.Provider value={{ user, isLoading, setUser, setIsLoading }}>
@@ -40,16 +34,18 @@ export const AuthProvider = ({children}) => {
     )
 }
 
-export const PrivateRoute = ({children}) => {
+export const PrivateRoute = ({ children }) => {
     const auth = useContext(AuthContext);
 
     if (auth.isLoading) {
-        return <div>Загрузка</div>
+        return <div>Loading...</div>;
     }
 
     if (!auth.user) {
-        return <Navigate to="/home" />
+        return <Navigate to="/" />;
     }
-    
+
+    console.log(auth.user + " is authenticated");
+
     return children;
 }

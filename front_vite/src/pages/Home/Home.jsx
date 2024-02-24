@@ -1,4 +1,5 @@
 import './Home.scss';
+import Cookies from "js-cookie";
 import Header from '../../components/Header/index.jsx';
 import Banner from '../../components/Banner/index.jsx'
 import { Pets } from '../../components/Card/utils.js';
@@ -13,16 +14,17 @@ import { Questions } from '../../components/Question/utils.js';
 import Answer from '../../components/Question/Answer.jsx';
 import react, {useState} from 'react';
 import Footer from '../../components/Footer/Footer.jsx';
+import HeaderUser from '../../components/HeaderUser/HeaderUser.jsx';
 
 const Home = () => {
     const [selectedQuestion, setSelectedQuestion] = useState(null);
-
+    const auth_result = Cookies.get("jwt_authorization");
     const handleSelect = (question) => {
         setSelectedQuestion(question);
     };
     return (
         <div className='home'>
-            <Header />
+            {auth_result ? (<HeaderUser />):(<Header />)}
             <div className='main'>
             <Banner />
             <h2 className='home__title'>Им подарили новую жизнь</h2>
