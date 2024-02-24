@@ -79,7 +79,8 @@
         }
         &__pets{
             width: 755px;
-            height: 367px;
+            min-height: 100px;
+            height: auto;
             text-align: start;
             flex-shrink: 0;
             border-radius: 45px;

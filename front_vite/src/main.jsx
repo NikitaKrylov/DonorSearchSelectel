@@ -46,20 +46,13 @@ const routes = createBrowserRouter([
     {
         path: '/finddonor',
         element: (
-            <PrivateRoute>
                 <FindDonor />
-            </PrivateRoute>
-                
-            
         ),
     },
     {
         path: '/bedonor',
         element: (
-            <PrivateRoute>
                 <BeDonor />
-            </PrivateRoute>
-            
         ),
     },
     {
