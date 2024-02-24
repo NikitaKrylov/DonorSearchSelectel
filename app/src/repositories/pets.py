@@ -94,14 +94,14 @@ class BloodDonationTransactionRepository(BaseRepository, SQLAlchemyRepository):
             await session.commit()
             await session.refresh(new_obj)
 
-            query = select(self.model).where(self.model.id == new_obj.id).options(joinedload(self.model.subject))
+            query = select(self.model).where(self.model.id == new_obj.id).options(joinedload(self.model.subject), joinedload(self.model.related_transaction))
             result = await session.execute(query)
             db_obj = result.scalar_one_or_none()
 
             if db_obj is None:
                 return db_obj
 
-            return GetDonationTransactionDTO.model_validate(db_obj, from_attributes=True)
+            return GetDonationTransactionWithRelatedDTO.model_validate(db_obj, from_attributes=True)
 
     async def update(self, transaction_type: TransactionType, transaction_id: int, data: UpdateDonationTransactionDTO) -> None:
         async with async_session() as session:
