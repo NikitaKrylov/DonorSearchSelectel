@@ -1,0 +1,38 @@
+.pet{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+    &__photo{
+        width: 85px;
+        height: 85px;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__info{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h1{
+            color: #252525;
+            font-family: "Montserrat Alternates";
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+        h2{
+            color: #252525;
+            font-family: "Montserrat Alternates";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            opacity: 0.5;
+        }
+    }
+
+
+}

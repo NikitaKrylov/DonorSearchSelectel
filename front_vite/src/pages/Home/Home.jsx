@@ -27,73 +27,80 @@ const Home = () => {
         <div className='home'>
             {auth_result ? (<HeaderUser />):(<Header />)}
             <div className='main'>
-            <Banner />
-            <h2 className='home__title'>Им подарили новую жизнь</h2>
-            <div className='home__cards'>
-                {
-                    Pets.map((data, index) => {
-                    return (
-                        <Card key={index} data={data} />
-                    )
-                })
-                }
-            </div>
-            <div className="home__img"></div>
-            <div className='home__instruction'>
-                    <div className='home__img-instruction'></div>
+                <Banner />
+                <h2 className='home__title'>Им подарили новую жизнь</h2>
+                <div className='home__cards'>
+                    {
+                        Pets.map((data, index) => {
+                        return (
+                            <Card key={index} data={data} />
+                        )
+                    })
+                    }
+                </div>
+
+                <div className="home__img"></div>
+
+                <div className='home__instruction'>
+                    <div className='home__img-instruction'>
+
+                    </div>
                     <div className="home__instructions">
-                        <span className='home__how-instruction'>Как работает сервис</span>
-                        <h2 className='home__title'>В несколько кликов</h2>
-                            {
-                                Instruction.map((data, index) => {
-                                return (
-                                    <Block key={index} data={data} />
-                                )
-                            })
-                            }
+                            <span className='home__how-instruction'>Как работает сервис</span>
+                            <h2 className='home__title'>В несколько кликов</h2>
+                                {
+                                    Instruction.map((data, index) => {
+                                    return (
+                                        <Block key={index} data={data} />
+                                    )
+                                })
+                                }
                     </div>
-            </div>
-            <h2 className='home__title'>Срочные запросы на донацию</h2>
-            <button className='home__more-btn'>Смотреть все</button>
-            <div className='home__fastcards'>
+                </div>
+                <h2 className='home__title'>Срочные запросы на донацию</h2>
+                <button className='home__more-btn'>Смотреть все</button>
+                <div className='home__fastcards'>
+                    {
+                        FastPets.map((data, index) => {
+                        return (
+                            <FastCard key={index} data={data} />
+                        )
+                    })
+                    }
+                </div>
+                <div className='home__blockinfo-wrap'>
+                        <div className='home__blockinfo'>
+
+                        </div>
+                </div>
+                <h2 className='home__title'>Рекомендуем к прочтению</h2>
+                <div className='home__articles'>
                 {
-                    FastPets.map((data, index) => {
-                    return (
-                        <FastCard key={index} data={data} />
-                    )
-                })
-                }
-            </div>
-            <div className='home__blockinfo-wrap'>
-                    <div className='home__blockinfo'></div>
-            </div>
-            <h2 className='home__title'>Рекомендуем к прочтению</h2>
-            <div className='home__articles'>
-            {
-                    Articles.map((data, index) => {
-                    return (
-                        <Article key={index} data={data} />
-                    )
-                })
-                }
-            </div>
-            <button className='home__more-articles'>Все статьи</button>
-            <div className="home__faq">
-            <h2 className='home__title'>FAQ</h2>
-                <div className='home__table'>
-                    <div className='home__questions'>
-                        {Questions.map((data, index) => (
-                        <Question key={index} data={data} handleSelect={handleSelect} isSelected={selectedQuestion === data} />
-                        ))}
-                    </div>
-                    <div className='home__answer'>
-                        {selectedQuestion && <Answer answer={selectedQuestion.answer} />}
+                        Articles.map((data, index) => {
+                        return (
+                            <Article key={index} data={data} />
+                        )
+                    })
+                    }
+                </div>
+                <button className='home__more-articles'>Все статьи</button>
+                <div className="home__faq">
+                    <h2 className='home__title'>FAQ</h2>
+                    <div className='home__table'>
+                        <div className='home__questions'>
+                            {Questions.map((data, index) => (
+                            <Question key={index} data={data} handleSelect={handleSelect} isSelected={selectedQuestion === data} />
+                            ))}
+                        </div>
+                        <div className='home__answer'>
+                            {selectedQuestion && <Answer answer={selectedQuestion.answer} />}
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
-        <Footer />
+            <Footer />
         </div>
+        
         
     )
 

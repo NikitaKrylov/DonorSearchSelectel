@@ -1,0 +1,171 @@
+.bdonorform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 0px;
+    margin-top: 50px;
+    h4{
+        font-family: 'Montserrat Alternates';
+        font-style: normal;
+        align-self: center;
+        font-weight: 700;
+        font-size: 45px;
+        flex-direction: column;
+        height: 55px;
+        width: 1200px;
+        span{
+            color: #FF5B56;
+
+        }
+    }
+    h3{
+        
+        margin-top: 50px;
+        margin-left: 50px;
+        margin-right: 50;
+        width: 100%;
+        color: #252525;
+        font-family: "Montserrat Alternates";
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 50px /* 178.571% */;
+        height: 40px;
+    }
+    &__oz{
+        color: #FFF;
+        font-family: "Montserrat Alternates";
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-left:50px ;
+        button{
+            width: 250px;
+            height: 64px;
+           
+            flex-shrink: 0;
+            border-radius: 25px;
+            background: #FF5B56;
+        }
+        
+    }
+    &__st1{
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        h3{
+            color: #252525;
+            font-family: "Montserrat Alternates";
+            font-size: 45px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            margin-left:50px ;
+            margin-top: 60px;
+           
+        }
+        span{
+            color: #252525;
+            font-family: "Montserrat Alternates";
+            font-size: 34px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            margin-left:50px ;
+            margin-top: 30px;
+           
+        }
+        &__pets{
+            width: 755px;
+            height: 367px;
+            text-align: start;
+            flex-shrink: 0;
+            border-radius: 45px;
+            background: #FFF;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+            margin-left:50px ;
+            margin-top: 20px;
+            .pet{
+                margin-left: 30px;
+                margin-top: 30px;
+            }
+            h3{
+                margin-top: 10px;
+                margin-left: 30px;
+            }
+
+        }
+    }
+    &__st2{
+        display: flex;
+        flex-direction: column;
+        h2{
+            color: #252525;
+            margin-top: 50px;
+            font-family: "Montserrat Alternates";
+            font-size: 45px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            margin-left: 50px;
+        }
+        h3{
+            
+            color: #252525;
+            font-family: "Montserrat Alternates";
+            font-size: 34px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+           
+        }
+        &__inp1{
+            margin-top: 10px;
+            width: 300px;
+            height: 50px;
+            margin-left: 50px;
+            flex-shrink: 0;
+            border-radius: 25px;
+            border: 2px solid #252525;
+            opacity: 0.7;
+            input{
+                margin-left: 20px;
+                margin-top: 10px;
+                width: 100%;
+            }
+        }
+    }
+    
+    &__bot{
+        margin-left: 50px;
+        span{
+            width: 1100px;
+            
+            color: #252525;
+            font-family: "Montserrat Alternates";
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 50px /* 178.571% */;
+        }
+        &__btn{
+            color: #FFF;
+            font-family: "Montserrat Alternates";
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            button{
+                width: 292px;
+                height: 64px;
+               
+                flex-shrink: 0;
+                border-radius: 25px;
+                background: #FF5B56;
+            }
+        }
+    }
+
+
+}

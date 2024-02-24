@@ -9,6 +9,8 @@ import { AuthProvider } from './hoc/PrivateRoute.jsx';
 import CardRequest from './pages/CardRequest/CardRequest.jsx';
 import PetPageInfo from './components/PetPageInfo/PetPageInfo.jsx';
 import ProfilePet from './pages/ProfilePet/ProfilePet.jsx';
+import FindDonor from './pages/FindDonor/FindDonor.jsx';
+import BeDonor from './pages/BeDonor/BeDonor.jsx';
 
 const routes = createBrowserRouter([
     {
@@ -38,6 +40,20 @@ const routes = createBrowserRouter([
                 <ProfilePet />
             </PrivateRoute>
                 
+        ),
+    },
+    {
+        path: '/finddonor',
+        element: (
+                <FindDonor />
+            
+        ),
+    },
+    {
+        path: '/bedonor',
+        element: (
+                <BeDonor />
+            
         ),
     },
 ]);
