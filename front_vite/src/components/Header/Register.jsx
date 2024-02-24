@@ -25,7 +25,7 @@ const Register = ({ changeMode }) => {
             password
         }
 
-        axios.post(BaseUrl + '/users', {
+        axios.post(baseUrl + '/users', {
             
                 email,
                 password
