@@ -5,8 +5,8 @@ import PetsProfile from '../../components/PetsProfile/PetsProfile.jsx';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import baseUrl from '../../../config.js';
-
-
+import Postcard from '../../components/Postcard/Postcard.jsx';
+import Footer from '../../components/Footer/Footer.jsx';
 const Account = () => {
 
     axios.get(baseUrl + '/users/me', {
@@ -31,13 +31,7 @@ const Account = () => {
                     <div className="account__postcards">
                         <h2 className='account__title'>Коллекция открыток</h2>
                         <div className='account__postcards-list'>
-                            {
-                                Postcards.map((data, index) => {
-                                    return (
-                                        <Postcard key={index} data={data} />
-                                    )
-                                })
-                            }
+                        
                         </div>
                         
                     </div>

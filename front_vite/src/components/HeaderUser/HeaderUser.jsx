@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import baseUrl from '../../../config';
-import React, { useEffect, useState, useCallback, } from 'react';
-
+import { useEffect, useState, useCallback, } from 'react';
+import logo from './logo.svg';
+import photo from './ava.png';
 const HeaderUser = () => {
     let [user, setUser] = useState({});
+    const logout = () => {
+        window.location.href = '/';
+        Cookies.remove('jwt_authorization');
+    };
     axios.get(baseUrl + '/users/me', {
         headers: {
             'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
@@ -38,7 +43,7 @@ const HeaderUser = () => {
                     <button>
                         <div className="user-header">
                             <div className="user-header__content">
-                                <span className="user-header__content__name">{user.email}</span>
+                                <span className="user-header__content__name">Иван Иванов</span>
                                 <span className="user-header__content__pets">2 питомца</span>
                             </div>
                             <img className="user-header__photo" src={photo} alt="user" />
