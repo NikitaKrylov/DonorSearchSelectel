@@ -1,11 +1,12 @@
 import Header from '../../components/Header';
 import './CardRequest.scss';
 import photo from '../../pages/CardRequest/ava.png';
+import HeaderUser from '../../components/HeaderUser/HeaderUser';
 
 const CardRequest = () => {
     return (
         <div className="request">
-            <Header />
+            <HeaderUser />
             <div className="main">
                 <a className="main__back"> Назад </a>
 

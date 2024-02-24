@@ -4,10 +4,11 @@ import './Header.scss';
 import Register from './Register';
 import Auth from './Auth.jsx';
 import logo from '../../components/Header/logo.svg';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     const [open, setOpen] = useState(false);
-    const [isReg, setIsReg] = useState(true);
+    const [isReg, setIsReg] = useState();
 
     const onOpen = () => {
         setOpen(true);
@@ -26,15 +27,21 @@ const Header = () => {
             <div className="header__content">
                 <img src={logo} className="header__logo" alt="logo" />
                 <div className="header__navigation">
+                    <Link to="/">
                     <a className="header__link" href="">
                         главная
                     </a>
+                    </Link>
+                    <Link to="/finddonor">
                     <a className="header__link" href="">
                         найти донора
                     </a>
+                    </Link>
+                    <Link to="/benddonor">
                     <a className="header__link" href="">
                         стать донором
                     </a>
+                    </Link>
                     <a className="header__link" href="">
                         еще
                     </a>

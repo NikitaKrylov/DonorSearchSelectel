@@ -3,17 +3,20 @@ import petphoto from "../PetPageInfo/pet_photo.png";
 import './PetPageInfo.scss';
 import { Navigate, useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import awards from '../PetPageInfo/your_awards.png';
+import postcard from '../PetPageInfo/postcard.png';
 const PetPageInfo = ()=> {
-    const [retn,setRetn] = useState(false);
+
     const navigate = useNavigate();
+    let [edit,setEdit] = useState(false);
     return (
         <div>
-            <div className='upper_block'>
-                <div className='upper_block__retn'>
-                    <Link to="/account"><button onClick={navigate("/")}>&lt;Назад</button></Link>
+            <div className='upperblock'>
+                <div className='upperblock__retn'>
+                    <Link to="/account"><button>&lt;Назад</button></Link>
                 </div>
-                <div className='upper_block__redact'>
-                    <button>Редактировать</button>
+                <div className='upperblock__redact'>
+                    <button onClick={(e) => setEdit(!edit)}>Редактировать</button>
                 </div>
             </div>
             <div>
@@ -23,7 +26,9 @@ const PetPageInfo = ()=> {
                             <img src={petphoto} width="308px" height="308px"/>
                         </div>
                         <div className='information__photoName__name'>
+                        
                             <h1>Люцифер</h1>
+                       
                             <span>донаций <b>7 | 0.8 л</b></span>
                             <br/>
                             <div className='award'>
@@ -40,20 +45,31 @@ const PetPageInfo = ()=> {
                         Информация о животном
                         </div>
                         <div className='information__form__params'>
-                            <div className='information__form__params__inp'><input placeholder="Животное"/></div>
-                            <div className='information__form__params__inp'><input placeholder="Порода"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit} placeholder="Животное"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit} placeholder="Порода"/></div>
                         </div>
                         <div className='information__form__params'>
-                            <div className='information__form__params__inp'><input placeholder="Пол"/></div>
-                            <div className='information__form__params__inp'><input placeholder="Возраст"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit} placeholder="Пол"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit}placeholder="Возраст"/></div>
                         </div>
                         <div className='information__form__params'>
-                            <div className='information__form__params__inp'><input placeholder="Вес(кг)"/></div>
-                            <div className='information__form__params__inp'><input placeholder="Группа крова"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit} placeholder="Вес(кг)"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit} placeholder="Группа крова"/></div>
                         </div>
                         
                             
                     </div>
+                    
+                
+                </div>
+            </div>
+            <div className='bottom_block'>
+                <div className='bottom_block__post'>
+                    <span>Открытка</span>
+                    <img src={postcard} width="271px" height="301px"/>
+                </div>
+                <div className='bottom_block__ur_awards'>
+                    <img src={awards}/>
                 </div>
             </div>
         </div>
