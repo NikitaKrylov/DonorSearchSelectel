@@ -23,7 +23,7 @@
         margin-top: 50px;
         margin-left: 50px;
         margin-right: 50;
-        width: 100%;
+        max-width: 1200px;
         color: #252525;
         font-family: "Montserrat Alternates";
         font-size: 28px;
@@ -41,6 +41,7 @@
         line-height: normal;
         margin-left:50px ;
         button{
+            margin-top: 3em;
             width: 250px;
             height: 64px;
            
@@ -133,6 +134,8 @@
                 margin-left: 20px;
                 margin-top: 10px;
                 width: 100%;
+
+                
             }
         }
         &__inp2{

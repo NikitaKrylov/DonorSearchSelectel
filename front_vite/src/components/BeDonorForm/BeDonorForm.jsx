@@ -1,6 +1,7 @@
 import React from 'react'
 import './BeDonorForm.scss';
 import Pet from './Pet';
+import { Link } from 'react-router-dom';
 const BeDonorForm = () => {
   return (
     <div className='bdonorform'>
@@ -29,7 +30,7 @@ const BeDonorForm = () => {
         <div className='bdonorform__bot'>
            <span>Отлично, а теперь давай найдем подходящую для твоего питомца заявку </span>
             <div className='bdonorform__bot__btn'>
-                <button>Смотреть заявки</button>
+                <Link to="/offers"><button>Смотреть заявки</button></Link>
             </div>
         </div>
     </div>

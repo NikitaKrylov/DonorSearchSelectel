@@ -41,12 +41,14 @@
         line-height: normal;
         margin-left:50px ;
         button{
+            margin-top: 3em;
             width: 250px;
             height: 64px;
            
             flex-shrink: 0;
             border-radius: 25px;
             background: #FF5B56;
+        
         }
         
     }
@@ -159,7 +161,7 @@
             button{
                 width: 292px;
                 height: 64px;
-               
+                color: #FFF;
                 flex-shrink: 0;
                 border-radius: 25px;
                 background: #FF5B56;
