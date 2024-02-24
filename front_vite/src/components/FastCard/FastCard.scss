@@ -1,0 +1,53 @@
+.fastcard {
+    width: 287px;
+    height: 364px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    border-radius: 30px;
+    &:hover {
+        transform: scale(1.05);
+    }
+    &__content {
+        display: flex;
+        flex-direction: column;
+        width: 289px;
+        height: 210px;
+        flex-shrink: 0;
+        border-radius: 30px;
+        background: #fff;
+        padding: 20px;
+        gap: 12px;
+    }
+    &__photo {
+        width: 289px;
+        height: 181px;
+        border-radius: 30px;
+    }
+    &__name {
+        color: #252525;
+        font-family: 'Montserrat Alternates';
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+    &__incident {
+        color: #252525;
+        font-family: 'Montserrat Alternates';
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+    &__blood {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 78.478px;
+        height: 27.335px;
+        flex-shrink: 0;
+        border-radius: 8.818px;
+        background: #ff5b56;
+        color: #fff;
+    }
+}

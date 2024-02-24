@@ -1,5 +1,5 @@
 import './Account.scss';
-import Header from '../../components/Header/index.jsx';
+import HeaderUser from '../../components/HeaderUser/HeaderUser.jsx';
 import Profile from '../../components/Profile/Profile.jsx';
 import PetsProfile from '../../components/PetsProfile/PetsProfile.jsx';
 import axios from 'axios';
@@ -20,7 +20,7 @@ const Account = () => {
 
     return (
         <div className='account'>
-            <Header />
+            <HeaderUser />
             <div className='account__profile'>
                 <Profile />
                 <PetsProfile />

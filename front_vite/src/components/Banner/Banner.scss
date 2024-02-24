@@ -2,12 +2,13 @@
     background-image: url(..//Banner/banner_img.png);
     width: 1240px;
     height: 716px;
+    margin-top: 70px;  
     margin: 0 auto;
-    margin-top: 70px;
     display: flex;
     justify-content: center;
     align-items: end;
     font-family: "Montserrat Alternates", sans-serif;
+    margin-bottom: 70px;
     &__btn {
         border: 15px solid #FAF4F4;
         border-radius: 100px;
@@ -17,7 +18,7 @@
         margin-bottom: -34px;
         font-size:30px;
         font-weight: 600;
-        background-color: #FF2A23;
+        background-color: #FF5B56;
         color: #FFFFFF;
         cursor: pointer;
     }
