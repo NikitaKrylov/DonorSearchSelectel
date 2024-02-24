@@ -37,7 +37,7 @@ const Header = () => {
                         найти донора
                     </a>
                     </Link>
-                    <Link to="/benddonor">
+                    <Link to="/bedonor">
                     <a className="header__link" href="">
                         стать донором
                     </a>
