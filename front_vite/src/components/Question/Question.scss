@@ -12,7 +12,7 @@
     font-weight: 600;
     line-height: 28px;
     width: 564px;
-    max-height: 98px;
+    height: 98px;
     justify-content: space-between;
     &:active {
         background-color: #141024;
@@ -28,6 +28,10 @@
         height: 24px;
     }
     &__text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: normal; 
         flex-shrink: 0;
         color: #372928;
         font-family: 'Montserrat Alternates';
@@ -35,6 +39,7 @@
         font-style: normal;
         font-weight: 600;
         line-height: 28px /* 116.667% */;
+        cursor: pointer;
         &:active {
             background-color: #141024;
             color: #fff;

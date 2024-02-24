@@ -3,19 +3,32 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    // gap: 40px;
-    // max-width: 1248px;
     &__cards {
         position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
         max-width: 1248px;
-        height: 468px;
-        overflow-x: scroll;
+        height: 558px;
+        overflow-x: auto;
         gap: 48px;
         margin-bottom: 50px;
         transform-origin: right top;
+        &::-webkit-scrollbar {
+            width: 50px;
+            height: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            width: 10px;
+            height: 5px;
+            background-color: #ff5b56;
+            border-radius: 40px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: #14102414;
+            border-radius: 40px;
+        }
     }
     &__title {
         display: flex;
@@ -27,7 +40,6 @@
         font-weight: 700;
         line-height: normal;
         align-self: flex-start;
-        margin-bottom: 50px;
     }
     &__instruction {
         display: flex;
@@ -61,6 +73,20 @@
         width: 580px;
         height: 751px;
     }
+    &__more-btn {
+        flex-shrink: 0;
+        color: #ff5b56;
+        font-family: 'Montserrat Alternates';
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        display: flex;
+        justify-content: end;
+        &::after {
+            background-image: url(./arrow.svg);
+        }
+    }
     &__how-instruction {
         display: flex;
         color: #555454;
@@ -87,48 +113,57 @@
         height: 704px;
         border-radius: 45px;
     }
-    &__blockinfo-wrap{
+    &__blockinfo-wrap {
         width: 1274.118px;
         height: 815.71px;
     }
-    &__articles{
+    &__articles {
         display: flex;
         gap: 40px;
     }
-    &__more-articles{
+    &__more-articles {
         display: inline-flex;
         padding: 19.077px;
         justify-content: center;
         align-items: center;
         gap: 9.538px;
         border-radius: 28.615px;
-        background: #FF6565;
-        color: #FFF;
-        font-family: "Montserrat Alternates";
+        background: #ff6565;
+        color: #fff;
+        font-family: 'Montserrat Alternates';
         font-size: 19.077px;
         font-style: normal;
         font-weight: 600;
         line-height: normal;
+        margin-top: 50px;
         margin-bottom: 50px;
+        width: 169px;
+        height: 61px;
+        align-self: center;
     }
-    &__faq{
+    &__faq {
         width: 1248px;
         height: 891px;
         display: flex;
+        flex-direction: column;
         padding: 40px 40px 24px 40px;
         align-items: flex-start;
         flex-shrink: 0;
         border-radius: 45px;
-        background: #FFF;
-        box-shadow: 0px 35px 78px 0px rgba(112, 102, 102, 0.10), 0px 141px 141px 0px rgba(112, 102, 102, 0.09), 0px 317px 190px 0px rgba(112, 102, 102, 0.05), 0px 564px 226px 0px rgba(112, 102, 102, 0.01), 0px 882px 247px 0px rgba(112, 102, 102, 0.00);
+        background: #fff;
+        box-shadow: 0px 35px 78px 0px rgba(112, 102, 102, 0.1), 0px 141px 141px 0px rgba(112, 102, 102, 0.09), 0px 317px 190px 0px rgba(112, 102, 102, 0.05),
+            0px 564px 226px 0px rgba(112, 102, 102, 0.01), 0px 882px 247px 0px rgba(112, 102, 102, 0);
         margin-bottom: 150px;
     }
-    &__questions{
-        width: 572px;
+    &__table{
         display: flex;
-        padding: 0px 8px 344px 0px;
+        justify-content: space-between;
+    }
+    &__questions {
+        display: flex;
+        padding: 0px;
         flex-direction: column;
         align-items: flex-start;
-
+        justify-content: space-between;
     }
 }

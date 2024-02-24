@@ -1,15 +1,16 @@
 import photo from '../../components/FastCard/fastpet.jpg';
+import './FastCard.scss';
 
 const FastCard = ( {data} ) => {
     return (
         <div className="fastcard">
-            <div className="card">
-            <img src={photo} className="card__photo" alt="photo" />
-            <div className='card__content'>
-                <h3 className="card__name">{data.name}</h3>
-                <span className="card__incident">{data.incident}</span>
-                <div className="card__blood">{data.blood}</div>
-                <span className="card__address">{data.address}</span>
+            <div className="fastcard__card">
+            <img src={photo} className="fastcard__photo" alt="photo" />
+            <div className='fastcard__content'>
+                <h3 className="fastcard__name">{data.name}</h3>
+                <span className="fastcard__incident">{data.incident}</span>
+                <div className="fastcard__blood">{data.blood}</div>
+                <span className="fastcard__address">{data.address}</span>
             </div>
         </div>
         </div>

@@ -4,12 +4,12 @@
     width: 384px;
     height: 547px;
     gap: 15px;
+    justify-content: space-between;
     &__img{
         width: 384px;
         height: 352px;
         flex-shrink: 0;
         border-radius: 45px;
-        background: #D9D9D9;
     }
     &__topics{
         display: flex;
@@ -39,6 +39,7 @@
         line-height: normal;
     }
     &__link{
+        display: flex;
         color: #FF6565;
         font-family: "Montserrat Alternates";
         font-size: 16px;
