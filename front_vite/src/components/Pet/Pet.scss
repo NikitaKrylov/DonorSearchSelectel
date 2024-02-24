@@ -1,0 +1,32 @@
+.pet {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    align-items: center;
+    &__pet-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    &__text {
+        display: flex;
+        flex-direction: column;
+    }
+    &__petname{
+        color: #252525;
+        font-family: "Montserrat Alternates";
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;       
+    }
+    &__donation-info{
+        color: #252525;
+        font-family: "Montserrat Alternates";
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+}

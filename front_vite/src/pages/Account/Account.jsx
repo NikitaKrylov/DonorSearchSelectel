@@ -19,15 +19,33 @@ const Account = () => {
     
 
     return (
-        <div className='account'>
+        <div className="account">
             <HeaderUser />
-            <div className='account__profile'>
+            <div className="account__profile">
                 <Profile />
-                <PetsProfile />
+                <div className="account__left">
+                    <PetsProfile />
+                    <div className="account__sum">
+                        <h3 className="account__red">1 литр крови сдали ваши питомцы</h3>
+                    </div>
+                    <div className="account__postcards">
+                        <h2 className='account__title'>Коллекция открыток</h2>
+                        <div className='account__postcards-list'>
+                            {
+                                Postcards.map((data, index) => {
+                                    return (
+                                        <Postcard key={index} data={data} />
+                                    )
+                                })
+                            }
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
+            <Footer />
         </div>
     );
-}
+};
 
-  
 export default Account;

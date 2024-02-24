@@ -3,5 +3,25 @@
     height: 367px;
     border-radius: 45px;
     background-color: #fff;
-    margin: auto;
+    padding: 20px;
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__title {
+        color: #252525;
+        font-family: 'Montserrat Alternates';
+        font-size: 35px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-bottom: 10px;
+    }
+    &__button {
+        width: 19px;
+        height: 19px;
+        background-image: url(./plus.png);
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
 }
