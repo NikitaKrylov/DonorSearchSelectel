@@ -21,41 +21,45 @@ const Auth = ({ changeMode }) => {
             console.log('error')
         };
 
-        const credentials = {
-            username,
-            password
-        }
+        // const credentials = {
+        //     username,
+        //     password
+        // }
 
         try {
-            const res = await axios.post(BaseUrl + "/login", new URLSearchParams(credentials), {
+            const res = await axios.post(BaseUrl + "/login", {
+                'username': username,
+                'password': password
+            }, 
+            {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 }
             });
-
-            // setData(res?.access_token);
-            localStorage.setItem("authorized",JSON.stringify(true));
+            // console.log(res.data.access_token);
+            Cookies.set("jwt_authorization",res.data.access_token);
+            //localStorage.setItem("authorized",JSON.stringify(true));
             
             
             navigate("/account");
-            console.log("damn")
+            // console.log("damn")
             
-        } catch {
+        } catch(err) {
             setAuthError(true)
-            console.log('authError')
+            console.log(err)
         }
     }, [username, password])
-    useEffect(() => {
-        if (data) {
-            console.log(data)
-            login(data)
-        }
-    }, [data])
-    const login = (jwt_token) =>{
-        const decoded = jwt(jwt_token);
-        setUser(decoded);
-        Cookies.set("jwt_authorization",jwt_token, { expires: new Date(decoded.exp * 60 * 60 * 24),});
-    }
+    // useEffect(() => {
+    //     if (data) {
+    //         console.log(data)
+    //         login(data)
+    //     }
+    // }, [data])
+    // const login = (data) =>{
+    //     const decoded = jwt(data);
+    //     setUser(data);
+    //     Cookies.set("jwt_authorization",data, { expires: new Date(decoded.exp * 60 * 60 * 24),});
+    // }
 
 
     return (

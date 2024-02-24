@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './ProfilePet.scss';
-import Header from '../../components/Header/index.jsx';
+import HeaderUser from '../../components/HeaderUser/HeaderUser.jsx';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import '../../styles/index.scss';
@@ -23,7 +23,7 @@ const ProfilePet = () => {
 
     return (
         <div className='petpage'>
-            <Header />
+            <HeaderUser />
             <PetPageInfo />
         </div>
     );
