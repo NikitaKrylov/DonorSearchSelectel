@@ -14,15 +14,15 @@ const Question = ({ data, handleSelect, isSelected }) => {
   };
 
   return (
-    <div className={`questions ${isActive ? 'active' : ''}`}>
+    <div className={`question ${isActive ? 'active' : ''}`}>
       <button
-        className="questions__text"
+        className="question__text"
         onClick={handleActive}
         onMouseLeave={handleInactive}
       >
         {data.question}
       </button>
-      <div className="questions__icon"></div>
+      <div className="question__icon"></div>
     </div>
   );
 };

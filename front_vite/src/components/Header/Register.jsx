@@ -10,6 +10,7 @@ const Register = ({ changeMode }) => {
     const [data, setData] = useState({});
     const [error, setError] = useState(false);
     const [authError, setAuthError] = useState(false);
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -48,6 +49,9 @@ const Register = ({ changeMode }) => {
             <div className="modal__wrap">
             <h2 className="modal__title">Зарегистрируйся<br/>или <span onClick={changeMode} className="modal__link">войди в аккаунт</span></h2>
                 <div className="modal__inputs">
+                    <div className='modal__inputs_i'>
+                        <input placeholder="Имя" name='name' onChange={(e) => setName(e.target.value)}></input>
+                    </div>
                     <div className='modal__inputs_i'>
                         <input placeholder="Почта" name='username' onChange={(e) => setEmail(e.target.value)}></input>
                     </div>
