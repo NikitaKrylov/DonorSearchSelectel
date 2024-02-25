@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     const [open, setOpen] = useState(false);
-    const [isReg, setIsReg] = useState();
+    const [isReg, setIsReg] = useState(true);
 
     const onOpen = () => {
         setOpen(true);

@@ -1,6 +1,7 @@
 .header {
     font-family: 'Montserrat Alternates', sans-serif;
     font-style: normal;
+   
     display: flex;
     flex-direction: column;
     height: 53px;
@@ -23,7 +24,9 @@
         justify-content: center;
         gap: 20px;
         align-items: center;
+    
     }
+    
     &__login {
         background-color: #faf4f4;
         cursor: pointer;
@@ -55,13 +58,13 @@
     &__navigation {
         display: flex;
         align-items: center;
-        gap: 60px;
+        gap: 50px;
     }
     &__link {
         text-decoration: none;
         font-size: 22px;
         font-weight: 600;
-        line-height: 20px;
+        line-height: 22px;
         letter-spacing: 0em;
         text-align: left;
         color: #252525;

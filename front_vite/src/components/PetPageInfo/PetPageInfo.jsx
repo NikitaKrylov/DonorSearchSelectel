@@ -54,7 +54,7 @@ const PetPageInfo = ()=> {
                         </div>
                         <div className='information__form__params'>
                             <div className='information__form__params__inp'><input disabled={edit} placeholder="Вес(кг)"/></div>
-                            <div className='information__form__params__inp'><input disabled={edit} placeholder="Группа крова"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit} placeholder="Группа крови"/></div>
                         </div>
                         
                             

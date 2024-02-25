@@ -116,16 +116,16 @@ const Home = () => {
             <button className='home__more-articles'>Все статьи</button>
             <div className="home__faq">
             <h2 className='home__title'>FAQ</h2>
-                <div className='home__table'>
-                    <div className='home__questions'>
+            <div className='home__table'>
+                <div className='home__title__questions'>
                         {Questions.map((data, index) => (
                         <Question key={index} data={data} handleSelect={handleSelect} isSelected={selectedQuestion === data} />
                         ))}
                     </div>
-                    <div className='home__answer'>
+                    <div className='home__title__answer'>
                         {selectedQuestion && <Answer answer={selectedQuestion.answer} />}
-                    </div>
                 </div>
+            </div>
             </div>
             </div>
             <Footer />
