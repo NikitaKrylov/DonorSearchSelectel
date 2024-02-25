@@ -37,7 +37,7 @@ const FindDonorForm = () => {
     const SaveDonorSearchData = () =>{
         axios.post(baseUrl + '/donations/request', {
             subject_id: selectedPet.id,
-            volume: amount,
+            volume: parseInt(amount),
             reason: reason,
             status: 'Активна',
             location: vet,
@@ -45,7 +45,7 @@ const FindDonorForm = () => {
         }).then(response => { 
             navigate("/account");
         }).catch(err => {
-            alert(err)
+            console.log(err)
         })
     }
 
@@ -56,7 +56,7 @@ const FindDonorForm = () => {
     }).then(response => {
         setCurrentUser(response.data)
     }).catch(err => {
-        alert(err)
+        console.log(err)
     })
 
     

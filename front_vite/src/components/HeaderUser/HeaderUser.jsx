@@ -7,22 +7,30 @@ import { useEffect, useState, useCallback, } from 'react';
 import logo from './logo.svg';
 import photo from './ava.png';
 import './HeaderUser.scss'
+import ava from '../../components/Profile/bigava.png'
+
 const HeaderUser = ({userId}) => {
-    // let [user, setUser] = useState({});
+    let [user, setUser] = useState({});
     const logout = () => {
         window.location.href = '/';
         Cookies.remove('jwt_authorization');
     };
-    // axios.get(baseUrl + '/users/me', {
-    //     headers: {
-    //         'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
-    //     }
-    // }).then(
-    //     response => {setUser(response.data)}
-    // ).catch(err => {
-    //     console.log(err)
+    axios.get(baseUrl + '/users/me', {
+        headers: {
+            'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
+        }
+    }).then(
+        response => {setUser(response.data)}
+    ).catch(err => {
+        console.log(err)
 
-    // })
+    })
+
+    let image = ava;
+
+    if (user.photo){
+        image = baseUrl + '/' + user.photo
+    }
 
     return (
         <header className="header">
@@ -44,10 +52,10 @@ const HeaderUser = ({userId}) => {
                     <span>
                         <div className="user-header">
                             <div className="user-header__content">
-                                <span className="user-header__content__name">Иван Иванов</span>
-                                <span className="user-header__content__pets">2 питомца</span>
+                                <span className="user-header__content__name">{user.name}</span>
+                                {/* <span className="user-header__content__pets">2 питомца</span> */}
                             </div>
-                            <img className="user-header__photo" src={photo} alt="user" />
+                            <img className="user-header__photo" width="50px" height="50px" src={photo} alt="user" />
                         </div>
                     </span>
                 </Link>

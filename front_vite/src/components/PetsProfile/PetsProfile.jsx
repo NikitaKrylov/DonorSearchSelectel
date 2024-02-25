@@ -9,6 +9,7 @@ import { Link, Navigate } from 'react-router-dom';
 import ProfilePet from '../../pages/ProfilePet/ProfilePet.jsx';
 
 
+
 const PetsProfile = ({userId}) => {
     let [availiablePets,setAvailiablePets] = useState([]);
 
@@ -26,13 +27,13 @@ const PetsProfile = ({userId}) => {
         <div className="pets-profile">
             <div className='pets-profile__header'>
                 <h2 className='pets-profile__title'>Ваши питомцы</h2>
-                <Link to="/petpage"><div><button className='pets-profile__button'></button></div></Link>
+                <Link to="/petpage" params={{ create: true}}><div><button className='pets-profile__button'></button></div></Link>
             </div>
             <div className="pets-profile__list">
                 {
                     availiablePets.map((data, index) => {
                     return (
-                        <Link to="/petpage">
+                        <Link to="/petpage" params={{create: true}}>
                             <Pet key={index} data={data} />
                         </Link>
                     )

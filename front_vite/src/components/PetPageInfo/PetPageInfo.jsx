@@ -1,21 +1,64 @@
 import React, { useEffect, useState } from 'react'
 import petphoto from "../PetPageInfo/pet_photo.png";
 import './PetPageInfo.scss';
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import awards from '../PetPageInfo/your_awards.png';
 import postcard from '../PetPageInfo/postcard.png';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import baseUrl from '../../../config';
+
+
 const PetPageInfo = ()=> {
 
-    const navigate = useNavigate();
+    
+
+
     let [edit,setEdit] = useState(false);
     let [race,setRace] = useState();
+    let [name, setName] = useState('');
     let [animal,setAnimal] = useState();
     let [sex,setSex] = useState();
     let [age,setAge] = useState();
     let [weight,setWeight] = useState();
     let [typeBlood,setTypeBlood] = useState();
     let [submit,setSubmit] = useState(false);
+    let [file,setFile] = useState();
+
+    const navigate = useNavigate();
+    // let {create} = useParams();
+    // console.log(create)
+    // console.log(useParams())
+
+    const createPet = () => {
+        let data = new FormData();
+        data.append('file_image', file, file.name);
+
+        let pr = {
+            name: name,
+            age: parseInt(age),
+            pet_type: animal,
+            breed: race,
+            has_graft: true,
+            weight: parseInt(weight),
+            sex: sex,
+            blood_type: typeBlood
+        }
+        console.log(pr)
+        axios.post(baseUrl + '/pets', data, {
+            params: pr
+        },
+        {headers: {
+            'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
+        }}).then(response => {
+            console.log('yes')
+        }).catch(err => {
+            console.log(err)
+        })
+
+    }
+
     return (
         <div>
             <div className='upperblock'>
@@ -35,7 +78,7 @@ const PetPageInfo = ()=> {
                         </div>
                         <div className='information__photoName__name'>
                         
-                            <h1>Люцифер</h1>
+                         <input placeholder={"Кличка"} onChange={(e)=>setName(e.target.value)}/>
                        
                             <span>донаций <b>7 | 0.8 л</b></span>
                             <br/>
@@ -64,8 +107,15 @@ const PetPageInfo = ()=> {
                             <div className='information__form__params__inp'><input disabled={edit}  onChange={(e)=>setWeight(e.target.value)} placeholder="Вес(кг)"/></div>
                             <div className='information__form__params__inp'><input disabled={edit}  onChange={(e)=>setTypeBlood(e.target.value)} placeholder="Группа крови"/></div>
                         </div>
+                        <div className='information__form__avatar'>
+                            <label for="petavatar">Выбери фото для питомца:</label>
+                            <input type='file' accept='img/jpg, img/png'name='petavatar' onChange={(e) => setFile(e.target.files)}/>
+                        </div>
                         <div className='upperblock__submit'>
-                            <button onClick={(e)=> setSubmit(true)}>Submit✓</button>
+                            <button onClick={(e)=> {
+                                setSubmit(true)
+                                createPet()
+                                }}>Submit✓</button>
                         </div>
                         
                             

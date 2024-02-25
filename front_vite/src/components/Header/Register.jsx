@@ -27,9 +27,9 @@ const Register = ({ changeMode }) => {
         }
 
         axios.post(baseUrl + '/users', {
-            
-                email,
-                password
+                name: name,
+                email: email,
+                password: password
             }
         ).then((response) => {
             setData(response.data?.email);

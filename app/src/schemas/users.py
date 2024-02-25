@@ -5,6 +5,7 @@ from .base import BaseFilterData
 class GetUserDTO(BaseModel):
     id: int
     email: str
+    name: str
     address: str | None = None
     age: int | None = None
     password: str
@@ -15,6 +16,7 @@ class GetUserDTO(BaseModel):
 
 
 class CreateUserDTO(BaseModel):
+    name: str
     email: str
     password: str
 

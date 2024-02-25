@@ -13,7 +13,7 @@ const BeDonorOffers = () => {
       setPets(response.data)
     }
   ).catch(err => {
-    alert(err)
+    console.log(err)
   })
 
   return (

@@ -24,6 +24,7 @@ const BeDonorForm = () => {
     }).then(
         response => {
             setCurrentUser(response.data.id)
+            console.log(currentUser)
 
         }
     ).catch(err => {
@@ -43,6 +44,7 @@ const BeDonorForm = () => {
     })
 
     const SaveDonorSuggestionData = () =>{
+
         console.log(city)
         console.log(selectedPet.id)
         axios.post(baseUrl + '/donations/suggestion', {
@@ -52,7 +54,7 @@ const BeDonorForm = () => {
         }).then(response => { 
             navigate("/account");
         }).catch(err => {
-            alert(err)
+            console.log(err)
         })
     }
 
