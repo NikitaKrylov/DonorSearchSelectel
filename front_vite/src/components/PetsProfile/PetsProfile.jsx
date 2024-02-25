@@ -5,7 +5,8 @@ import Cookies from 'js-cookie';
 import {useState} from 'react'
 import baseUrl from '../../../config';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import ProfilePet from '../../pages/ProfilePet/ProfilePet.jsx';
 
 
 const PetsProfile = ({userId}) => {
@@ -25,7 +26,7 @@ const PetsProfile = ({userId}) => {
         <div className="pets-profile">
             <div className='pets-profile__header'>
                 <h2 className='pets-profile__title'>Ваши питомцы</h2>
-                <button className='pets-profile__button'></button>
+                <Link to="/petpage"><div><button className='pets-profile__button'></button></div></Link>
             </div>
             <div className="pets-profile__list">
                 {
