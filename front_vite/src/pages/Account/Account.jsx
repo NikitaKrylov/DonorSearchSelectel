@@ -19,25 +19,27 @@ const Account = () => {
     
 
     return (
-        <div className="account">
+        <div className='acc'>
             <HeaderUser />
-            <div className="account__profile">
+
+            <div className='acc_profile'>
                 <Profile />
-                <div className="account__left">
+                <div className='acc_profile__peinf'>
                     <PetsProfile />
-                    <div className="account__sum">
-                        <h3 className="account__red">1 литр крови сдали ваши питомцы</h3>
+                    <div className='acc_profile__penif__varblood'>
+                    <span><h3>1 литр крови</h3> сдали ваши питомцы</span>
+                   
                     </div>
-                    <div className="account__postcards">
-                        <h2 className='account__title'>Коллекция открыток</h2>
-                        <div className='account__postcards-list'>
-                        
-                        </div>
+                    <div className='cards'>
+                        <span>Коллекция открыток</span>
                         
                     </div>
                 </div>
+            
             </div>
-            <Footer />
+            
+
+
         </div>
     );
 };
