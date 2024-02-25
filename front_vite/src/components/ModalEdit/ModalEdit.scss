@@ -1,0 +1,70 @@
+.modal1 {
+    z-index: 4;
+    border-radius: 40px;
+    & &__wrap{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 532px;
+        height: 841px;
+        flex-shrink: 0;
+        border-radius: 40px;
+        border: 2px solid #FFF;
+        background: #FFF;
+        padding: 40px;
+    }
+
+    &__title{
+        margin-bottom: 10px;
+        font-size: 24px;
+        color: #3D2D2D;
+        text-align: center;
+        font-family: 'Montserrat Alternates', sans-serif;
+        font-size: 34px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    &__inputs{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        &_i{
+            padding: 15px 300px 25px 20px;
+            align-items: center;
+            flex-shrink: 0;
+            border-radius: 24px;
+            border: 1px solid #8B6464;
+            background: #FFF;
+            width: 389px;
+            height: 69px;
+        }
+    }
+
+    &__descr{
+        max-width: 530px;
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    &__button {
+        width: 389px;
+        height: 67px;
+        flex-shrink: 0;
+        border-radius: 25px;
+        background: #FF5B56;
+        color: #FFF;
+        font-family: "Montserrat Alternates";
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px /* 92.308% */;
+    }
+
+    &__link {
+        color: #ff5b56;
+        cursor: pointer;
+    }
+}

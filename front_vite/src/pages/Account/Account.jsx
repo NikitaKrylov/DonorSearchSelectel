@@ -10,6 +10,7 @@ import Footer from '../../components/Footer/Footer.jsx';
 import { useState } from 'react';
 
 const Account = () => { 
+    
     let [user, setUser] = useState({})
     axios.get(baseUrl + '/users/me', { 
         headers: { 
@@ -30,14 +31,11 @@ const Account = () => {
                 <div className="account__left"> 
                     <PetsProfile userId={user.id}/> 
                     <div className="account__sum"> 
-                        <h3 className="account__red">1 литр крови сдали ваши питомцы</h3> 
+                        <h3 className="account__red"><span>1 литр крови</span>&nbsp;сдали ваши питомцы</h3> 
                     </div> 
                     <div className="account__postcards"> 
                         <h2 className='account__title'>Коллекция открыток</h2> 
-                        <div className='account__postcards-list'> 
-                         
-                        </div> 
-                         
+                        <div className='account__postcards-list'></div> 
                     </div> 
                 </div> 
             </div> 
