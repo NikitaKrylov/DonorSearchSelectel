@@ -62,8 +62,9 @@ const Home = () => {
     return (
         <div className='home'>
             {auth_result ? (<HeaderUser />):(<Header />)}
-            <div className='main'>
+            <div className='home__main'>
             <Banner />
+            <p className='home__text-dec'>Наша радость</p>
             <h2 className='home__title'>Им подарили новую жизнь</h2>
             <div className='home__cards'>
                 {
@@ -74,7 +75,9 @@ const Home = () => {
                 })
                 }
             </div>
-            <div className="home__img"></div>
+            <div className="home__img">
+                {/* <h3 className='home__img__text'>Всего одна капля крови имеет<br /> колоссальное значение</h3> */}
+            </div>
             <div className='home__instruction'>
                     <div className='home__img-instruction'></div>
                     <div className="home__instructions">
@@ -101,7 +104,9 @@ const Home = () => {
                 }
             </div>
             <div className='home__blockinfo-wrap'>
-                    <div className='home__blockinfo'></div>
+                    <div className='home__blockinfo'>
+                    <h3 className='home__blockinfo__text'>Вы не живете, пока не сделаете что-то для того, кто никогда не сможет вам заплатить</h3>
+                    </div>
             </div>
             <h2 className='home__title'>Рекомендуем к прочтению</h2>
             <div className='home__articles'>

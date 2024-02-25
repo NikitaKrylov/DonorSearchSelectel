@@ -4,6 +4,12 @@
     flex-direction: column;
     align-items: center;
     min-height: 100%;
+    &__main{
+        display: flex;
+        flex-direction: column;
+        margin-top: 70px;
+        max-width:1240px ;
+    }
     &__cards {
         position: relative;
         display: flex;
@@ -31,6 +37,14 @@
             border-radius: 40px;
         }
     }
+    &__text-dec{
+        color: #555454;
+        font-family: "Montserrat Alternates";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
     &__title {
         display: flex;
         flex-shrink: 0;
@@ -41,6 +55,7 @@
         font-weight: 700;
         line-height: normal;
         align-self: flex-start;
+        margin-bottom: 20px;
     }
     &__instruction {
         display: flex;
@@ -61,9 +76,21 @@
     }
     &__img {
         display: flex;
-        background-image: url(./paws.png);
+        background-image: url(./paws1.svg);
         width: 1371px;
         height: 560px;
+        justify-content: center;
+        align-items: center; 
+        padding-right: 150px;
+        align-self: center;
+        &__text{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 45px;
+            font-weight: 600;
+            text-align: center;
+        }
     }
     &__img-instruction {
         display: flex;
@@ -103,7 +130,7 @@
         justify-content: space-between;
         align-items: center;
         width: 1248px;
-        gap: 30px;
+        gap: 20px;
         margin-bottom: 50px;
     }
     &__blockinfo {
@@ -113,6 +140,15 @@
         width: 1234px;
         height: 704px;
         border-radius: 45px;
+        &__text{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 45px;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+        }
     }
     &__blockinfo-wrap {
         width: 1274.118px;
@@ -147,7 +183,7 @@
         height: 891px;
         display: flex;
         flex-direction: column;
-        padding: 40px 40px 24px 40px;
+        padding: 30px 30px 24px 30px;
         align-items: flex-start;
         flex-shrink: 0;
         border-radius: 45px;
@@ -155,10 +191,12 @@
         box-shadow: 0px 35px 78px 0px rgba(112, 102, 102, 0.1), 0px 141px 141px 0px rgba(112, 102, 102, 0.09), 0px 317px 190px 0px rgba(112, 102, 102, 0.05),
             0px 564px 226px 0px rgba(112, 102, 102, 0.01), 0px 882px 247px 0px rgba(112, 102, 102, 0);
         margin-bottom: 150px;
+        gap: 10px;
     }
     &__table{
         display: flex;
         justify-content: space-between;
+        gap: 30px;
     }
     &__questions {
         display: flex;
@@ -166,5 +204,10 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-between;
+        width: 572px;
+        gap: 30px; /* Расстояние между вопросами */
+        width: 100%; /* Занимать всю ширину родительского блока */
+        max-width: 564px; /* Максимальная ширина вопросов */
+        overflow: hidden; /* Предотвращает выход текста за границы */
     }
 }

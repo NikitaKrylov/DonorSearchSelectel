@@ -1,27 +1,81 @@
-.acc_profile{
-    margin-top: 50px;
-    display: flex;
-    justify-content: start;
-    flex-direction: row;
-    &__petinf{
-        display: flex;
-        flex-direction: column;
-        &__varblood{
-            h3{
-                color: #252525;
-                font-family: "Montserrat Alternates";
-                font-size: 20px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: normal;
-            }
-            &__red{
-                color: #FF5B56;
-                
-            }
-           
-        }
-
-    }
-    
+.account { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    &__profile{ 
+        display: flex; 
+        justify-content: space-between; 
+        padding-top: 75px; 
+        width: 1248px; 
+        margin-bottom: 50px; 
+    } 
+    &__sum{ 
+        width: 730px; 
+        height: 82px; 
+        flex-shrink: 0; 
+        border-radius: 45px; 
+        opacity: 0.9; 
+        background: #fff; 
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05); 
+    } 
+    &__left{ 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: space-between; 
+    } 
+    &__sum { 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        color: #252525; 
+        font-family: 'Montserrat Alternates'; 
+        font-size: 26px; 
+        font-style: normal; 
+        font-weight: 600; 
+        line-height: normal; 
+    } 
+    &__postcards { 
+        padding: 20px; 
+        display: flex; 
+        width: 730px; 
+        height: 341px; 
+        background-color: #fff; 
+        align-items: flex-start; 
+        gap: 30px; 
+        flex-direction: column; 
+        border-radius: 45px; 
+    } 
+    &__title { 
+        color: #252525; 
+        font-family: 'Montserrat Alternates'; 
+        font-size: 35px; 
+        font-style: normal; 
+        font-weight: 700; 
+        line-height: normal; 
+    } 
+    &__postcards-list { 
+        position: relative; 
+        width: 730px; 
+        display: flex; 
+        align-items: center; 
+        gap: 20px; 
+        overflow-x: auto; 
+        transform-origin: right top; 
+        &::-webkit-scrollbar { 
+            width: 50px; 
+            height: 5px; 
+        } 
+ 
+        &::-webkit-scrollbar-thumb { 
+            width: 10px; 
+            height: 5px; 
+            background-color: #ff5b56; 
+            border-radius: 40px; 
+        } 
+        &::-webkit-scrollbar-track { 
+            background-color: #14102414; 
+            border-radius: 40px; 
+        } 
+    } 
 }
