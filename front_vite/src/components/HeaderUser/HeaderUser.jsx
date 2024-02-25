@@ -27,6 +27,7 @@ const HeaderUser = ({userId}) => {
     return (
         <header className="header">
             <div className="header__content">
+            <meta http-equiv="cache-control" content="no-cache"/>
                 <img src={logo} className="header__logo" alt="logo" />
                 <div className="header__navigation">
                     <Link to="/">
