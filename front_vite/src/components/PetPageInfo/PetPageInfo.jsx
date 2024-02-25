@@ -9,6 +9,12 @@ const PetPageInfo = ()=> {
 
     const navigate = useNavigate();
     let [edit,setEdit] = useState(false);
+    let [race,setRace] = useState();
+    let [animal,setAnimal] = useState();
+    let [sex,setSex] = useState();
+    let [age,setAge] = useState();
+    let [weight,setWeight] = useState();
+    let [typeBlood,setTypeBlood] = useState();
     return (
         <div>
             <div className='upperblock'>
@@ -45,16 +51,16 @@ const PetPageInfo = ()=> {
                         Информация о животном
                         </div>
                         <div className='information__form__params'>
-                            <div className='information__form__params__inp'><input disabled={edit} placeholder="Животное"/></div>
-                            <div className='information__form__params__inp'><input disabled={edit} placeholder="Порода"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit} onChange={(e)=>setAnimal(e.target.value)} placeholder="Животное"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit} onChange={(e)=>setRace(e.target.value)}placeholder="Порода"/></div>
                         </div>
                         <div className='information__form__params'>
-                            <div className='information__form__params__inp'><input disabled={edit} placeholder="Пол"/></div>
-                            <div className='information__form__params__inp'><input disabled={edit}placeholder="Возраст"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit}  onChange={(e)=>setSex(e.target.value)} placeholder="Пол"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit}  onChange={(e)=>setAge(e.target.value)} placeholder="Возраст"/></div>
                         </div>
                         <div className='information__form__params'>
-                            <div className='information__form__params__inp'><input disabled={edit} placeholder="Вес(кг)"/></div>
-                            <div className='information__form__params__inp'><input disabled={edit} placeholder="Группа крови"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit}  onChange={(e)=>setWeight(e.target.value)} placeholder="Вес(кг)"/></div>
+                            <div className='information__form__params__inp'><input disabled={edit}  onChange={(e)=>setTypeBlood(e.target.value)} placeholder="Группа крови"/></div>
                         </div>
                         
                             
