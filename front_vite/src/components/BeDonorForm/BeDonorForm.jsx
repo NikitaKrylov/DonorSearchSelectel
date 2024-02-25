@@ -13,6 +13,7 @@ const BeDonorForm = () => {
     let [availiablePets,setAvailiablePets] = useState([]);
     let [selectedPet,setSelectedPet] = useState();
     let [currentUser,setCurrentUser] = useState();
+    let [city,setCity] = useState();
     const navigate = useNavigate();
 
     
@@ -22,7 +23,6 @@ const BeDonorForm = () => {
         }
     }).then(
         response => {
-            console.log(response.data)
             setCurrentUser(response.data.id)
 
         }
@@ -43,11 +43,12 @@ const BeDonorForm = () => {
     })
 
     const SaveDonorSuggestionData = () =>{
-        axios.post(baseUrl + '/donations/request', {
+        console.log(city)
+        console.log(selectedPet.id)
+        axios.post(baseUrl + '/donations/suggestion', {
             subject_id: selectedPet.id,
-            volume: amount,
-            reason: reason,
-            status: 'Активна'
+            status: 'Активна',
+            location: city
         }).then(response => { 
             navigate("/account");
         }).catch(err => {
@@ -87,7 +88,7 @@ const BeDonorForm = () => {
             <h3>
             Укажите в каком городе было бы удобно сдать кровь
             </h3>
-            <div className='bdonorform__st2__inp1'><input placeholder="Укажите город"/></div>
+            <div className='bdonorform__st2__inp1'><input placeholder="Укажите город" onChange={(e)=> setCity(e.target.value)}/></div>
         </div>
         
         <div className='bdonorform__bot'>

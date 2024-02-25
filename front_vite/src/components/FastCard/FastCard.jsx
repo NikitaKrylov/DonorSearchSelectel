@@ -12,7 +12,7 @@ const FastCard = ( {data} ) => {
                 <h3 className="fastcard__name">{data.subject.name}</h3>
                 <span className="fastcard__incident">{data.reason}</span>
                 <div className="fastcard__blood">{data.subject.blood_type}</div>
-                <span className="fastcard__address">{data.address}</span>
+                <span className="fastcard__address">{data.location}</span>
             </div>
         </div>
         </div>
