@@ -15,12 +15,14 @@ const PetPageInfo = ()=> {
     let [age,setAge] = useState();
     let [weight,setWeight] = useState();
     let [typeBlood,setTypeBlood] = useState();
+    let [submit,setSubmit] = useState(false);
     return (
         <div>
             <div className='upperblock'>
                 <div className='upperblock__retn'>
                     <Link to="/account"><button>&lt;Назад</button></Link>
                 </div>
+                
                 <div className='upperblock__redact'>
                     <button onClick={(e) => setEdit(!edit)}>Редактировать</button>
                 </div>
@@ -61,6 +63,9 @@ const PetPageInfo = ()=> {
                         <div className='information__form__params'>
                             <div className='information__form__params__inp'><input disabled={edit}  onChange={(e)=>setWeight(e.target.value)} placeholder="Вес(кг)"/></div>
                             <div className='information__form__params__inp'><input disabled={edit}  onChange={(e)=>setTypeBlood(e.target.value)} placeholder="Группа крови"/></div>
+                        </div>
+                        <div className='upperblock__submit'>
+                            <button onClick={(e)=> setSubmit(true)}>Submit✓</button>
                         </div>
                         
                             

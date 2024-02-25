@@ -27,7 +27,6 @@ const HeaderUser = ({userId}) => {
     return (
         <header className="header">
             <div className="header__content">
-            <meta http-equiv="cache-control" content="no-cache"/>
                 <img src={logo} className="header__logo" alt="logo" />
                 <div className="header__navigation">
                     <Link to="/">
@@ -42,13 +41,15 @@ const HeaderUser = ({userId}) => {
                     <span className="header__link" href="">еще</span>
                 </div>
                 <Link to="/account">
-                    <div className="user-header">
-                        <div className="user-header__content">
-                            <span className="user-header__content__name">Иван Иванов</span>
-                            <span className="user-header__content__pets">2 питомца</span>
+                    <span>
+                        <div className="user-header">
+                            <div className="user-header__content">
+                                <span className="user-header__content__name">Иван Иванов</span>
+                                <span className="user-header__content__pets">2 питомца</span>
+                            </div>
+                            <img className="user-header__photo" src={photo} alt="user" />
                         </div>
-                        <img className="user-header__photo" src={photo} alt="user" />
-                    </div>
+                    </span>
                 </Link>
                 <div className='logout'onClick={logout}>
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -26,13 +26,13 @@ const Account = () => {
     })
 
     return (
-        <div className="account">
+        <div className="acc">
             <HeaderUser userId={user.id}/>
-            <div className="account__profile">
+            <div className="acc__profile">
                 <Profile userId={user.id}/>
-                <div className="account__left">
+                <div className="acc__profile__petinf">
                     <PetsProfile userId={user.id} />
-                    <div className="account__sum">
+                    <div className="account__profile__pitinf__varblood">
                         <h3 className="account__red">1 литр крови сдали ваши питомцы</h3>
                     </div>
                     <div className='cards'>

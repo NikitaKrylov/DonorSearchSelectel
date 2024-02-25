@@ -61,10 +61,16 @@ const routes = createBrowserRouter([
             <PrivateRoute>
                 <BeDonorOffersPage />
             </PrivateRoute>
-                
-            
+        ),
+        
+    },
+    {
+        path: '/petpage',
+        element: (
+                <ProfilePet />
         ),
     },
+    
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

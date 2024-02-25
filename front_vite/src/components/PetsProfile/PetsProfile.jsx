@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import {useState} from 'react'
 import baseUrl from '../../../config';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const PetsProfile = ({userId}) => {
@@ -30,7 +31,9 @@ const PetsProfile = ({userId}) => {
                 {
                     availiablePets.map((data, index) => {
                     return (
-                        <Pet key={index} data={data} />
+                        <Link to="/petpage">
+                            <Pet key={index} data={data} />
+                        </Link>
                     )
                 })
                 }
