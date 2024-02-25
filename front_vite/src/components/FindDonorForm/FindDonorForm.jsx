@@ -39,7 +39,9 @@ const FindDonorForm = () => {
             subject_id: selectedPet.id,
             volume: amount,
             reason: reason,
-            status: 'Активна'
+            status: 'Активна',
+            location: vet,
+            relevant_until: date
         }).then(response => { 
             navigate("/account");
         }).catch(err => {
@@ -52,7 +54,6 @@ const FindDonorForm = () => {
             'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
         }
     }).then(response => {
-        console.log(response.data)
         setCurrentUser(response.data)
     }).catch(err => {
         alert(err)

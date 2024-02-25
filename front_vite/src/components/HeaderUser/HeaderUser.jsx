@@ -6,22 +6,23 @@ import baseUrl from '../../../config';
 import { useEffect, useState, useCallback, } from 'react';
 import logo from './logo.svg';
 import photo from './ava.png';
-const HeaderUser = () => {
-    let [user, setUser] = useState({});
+
+const HeaderUser = ({userId}) => {
+    // let [user, setUser] = useState({});
     const logout = () => {
         window.location.href = '/';
         Cookies.remove('jwt_authorization');
     };
-    axios.get(baseUrl + '/users/me', {
-        headers: {
-            'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
-        }
-    }).then(
-        response => {setUser(response.data)}
-    ).catch(err => {
-        console.log(err)
+    // axios.get(baseUrl + '/users/me', {
+    //     headers: {
+    //         'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
+    //     }
+    // }).then(
+    //     response => {setUser(response.data)}
+    // ).catch(err => {
+    //     console.log(err)
 
-    })
+    // })
 
     return (
         <header className="header">

@@ -1,8 +1,25 @@
 import { MyPets } from '../Pet/utils.js';
 import Pet from '../Pet/Pet.jsx';
 import './PetsProfile.scss';
+import Cookies from 'js-cookie';
+import {useState} from 'react'
+import baseUrl from '../../../config';
+import axios from 'axios';
 
-const PetsProfile = () => {
+
+const PetsProfile = ({userId}) => {
+    let [availiablePets,setAvailiablePets] = useState([]);
+
+    axios.get(baseUrl + '/pets', {
+        params: {
+            owner_id: userId
+        }
+    }).then(response => {
+        setAvailiablePets(response.data)
+    }).catch(err => {
+        console.log(err)
+
+    })
     return (
         <div className="pets-profile">
             <div className='pets-profile__header'>
@@ -11,7 +28,7 @@ const PetsProfile = () => {
             </div>
             <div className="pets-profile__list">
                 {
-                    MyPets.map((data, index) => {
+                    availiablePets.map((data, index) => {
                     return (
                         <Pet key={index} data={data} />
                     )

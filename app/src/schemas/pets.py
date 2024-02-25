@@ -7,6 +7,11 @@ from enum import Enum
 from .base import BaseFilterData
 
 
+class PetSex(str, Enum):
+    MALE = 'male'
+    FEMALE = 'female'
+
+
 class PetType(str, Enum):
     DOG = 'Собака'
     CAT = 'Кошка'
@@ -38,6 +43,7 @@ class CreatePetDTO(BaseModel):
     breed: str
     has_graft: bool
     weight: float
+    sex: PetSex
 
 
 class GetPetDTO(CreatePetDTO):
@@ -64,12 +70,15 @@ class GetDonationTransactionDTO(BaseModel):
     id: int
 
     subject: GetPetDTO
-    volume: float
+    volume: float | None
     type: TransactionType
     status: DonationTransactionStatus
-    reason: str
+    reason: str | None
     created_at: datetime
     related_transaction_id: int | None = None
+    relevant_until: datetime | None = None
+    document: str | None = None
+    location: str
 
 
 class GetDonationTransactionWithRelatedDTO(GetDonationTransactionDTO):
@@ -78,16 +87,19 @@ class GetDonationTransactionWithRelatedDTO(GetDonationTransactionDTO):
 
 class CreateDonationTransactionDTO(BaseModel):
     subject_id: int
-    volume: float
+    volume: float | None = None
     status: DonationTransactionStatus
-    reason: str
+    reason: str | None = None
+    location: str
 
 
 class UpdateDonationTransactionDTO(BaseModel):
-    volume: float
+    volume: float | None = None
     type: TransactionType
     status: DonationTransactionStatus
-    reason: str
+    reason: str | None = None
+    relevant_until: datetime | None = None
+    location: str
 
 
 class TransactionFilterData(BaseFilterData):
