@@ -75,9 +75,7 @@ const Home = () => {
                 })
                 }
             </div>
-            <div className="home__img">
-                {/* <h3 className='home__img__text'>Всего одна капля крови имеет<br /> колоссальное значение</h3> */}
-            </div>
+            <div className="home__img"></div>
             <div className='home__instruction'>
                     <div className='home__img-instruction'></div>
                     <div className="home__instructions">
@@ -122,7 +120,7 @@ const Home = () => {
             <div className="home__faq">
             <h2 className='home__title'>FAQ</h2>
             <div className='home__table'>
-                <div className='home__title__questions'>
+                <div className='home__questions'>
                         {Questions.map((data, index) => (
                         <Question key={index} data={data} handleSelect={handleSelect} isSelected={selectedQuestion === data} />
                         ))}

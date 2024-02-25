@@ -5,42 +5,57 @@ import { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import baseUrl from '../../../config';
+import ModalEdit from '../ModalEdit/ModalEdit.jsx';
+import Dialog from '@mui/material/Dialog';
 
-
-const Profile = ({userId}) => {
+const Profile = ({ userId }) => {
     const [checked1, setChecked1] = useState(true);
     const [checked2, setChecked2] = useState(true);
     let [user, setUser] = useState({});
+    const [open, setOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(true);
+
+    const onOpen = () => {
+        setOpen(true);
+    };
+
+    const onClose = () => {
+        setOpen(false);
+    };
 
     const handleChange1 = () => {
-        setChecked1((prev) => !prev);
+        setChecked1(prev => !prev);
     };
 
     const handleChange2 = () => {
-        setChecked2((prev) => !prev);
+        setChecked2(prev => !prev);
     };
 
-    axios.get(baseUrl + '/users/me', {
-        headers: {
-            'Authorization': 'Bearer ' + Cookies.get('jwt_authorization')
-        }
-    }).then(
-        response => {
-            setUser(response.data)
-        }
-    ).catch(err => {
-        console.log(err)
+    axios
+        .get(baseUrl + '/users/me', {
+            headers: {
+                Authorization: 'Bearer ' + Cookies.get('jwt_authorization'),
+            },
+        })
+        .then(response => {
+            setUser(response.data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    let image = photo;
 
-    })
-    let image = photo
-
-    if (user.photo){
-        let image = baseUrl + '/' + user.photo
+    if (user.photo) {
+        let image = baseUrl + '/' + user.photo;
     }
-    console.log(image)
+    console.log(image);
     return (
         <div className="profile">
             <div className="profile__content">
+                <button className="profile__settings" onClick={onOpen}></button>
+                <Dialog className="modal" open={open} onClose={onClose}>
+                    {isModalOpen && <ModalEdit onClose={onOpen} />}
+                </Dialog>
                 <img className="profile__photo" src={image} />
                 <h2 className="profile__name">{user.name}</h2>
                 <div className="profile__info">
@@ -60,7 +75,7 @@ const Profile = ({userId}) => {
                         <span className="profile__answer">{user.telegram}</span>
                         <span className="profile__answer">{user.name}</span>
                         <span className="profile__answer">{user.address}</span>
-                        
+
                         <Switch className="profile__answer" checked={checked1} onChange={handleChange1} color="warning" />
                         <Switch className="profile__answer" checked={checked2} onChange={handleChange2} color="warning" />
                     </div>

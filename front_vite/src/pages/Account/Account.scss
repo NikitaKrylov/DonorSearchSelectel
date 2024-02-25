@@ -6,7 +6,7 @@
     &__profile{ 
         display: flex; 
         justify-content: space-between; 
-        padding-top: 75px; 
+        margin-top: 75px; 
         width: 1248px; 
         margin-bottom: 50px; 
     } 
@@ -34,6 +34,9 @@
         font-style: normal; 
         font-weight: 600; 
         line-height: normal; 
+        span{
+            color:#ff5b56;
+        }
     } 
     &__postcards { 
         padding: 20px; 
